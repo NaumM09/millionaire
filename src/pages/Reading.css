@@ -1,0 +1,389 @@
+/* Reading.css */
+.reading-journal-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .reading-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
+  /* Add Book Button */
+  .add-book-btn {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-book-btn:hover {
+    background-color: #ff5877;
+  }
+  
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: white;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(40, 40, 40, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  
+  .cancel-btn, .add-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .cancel-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+  }
+  
+  .add-btn {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  .add-btn:hover {
+    background-color: #ff5877;
+  }
+  
+  .cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Monthly Reading Goal Section */
+  .monthly-reading-goal {
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .monthly-book-card {
+    display: flex;
+    gap: 1.5rem;
+    background: rgba(30, 30, 30, 0.4);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .book-preview {
+    flex-shrink: 0;
+  }
+  
+  .book-placeholder {
+    border-radius: 8px;
+  }
+  
+  .book-cover {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .book-details {
+    flex-grow: 1;
+  }
+  
+  .book-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .book-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .book-status {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+  }
+  
+  .book-status.pending {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #FFC107;
+  }
+  
+  .book-status.in-progress {
+    background-color: rgba(33, 150, 243, 0.15);
+    color: #2196F3;
+  }
+  
+  .book-status.completed {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #4CAF50;
+  }
+  
+  .book-author {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .book-category {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .book-progress {
+    margin-top: 1.5rem;
+  }
+  
+  .book-progress label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  
+  .page-progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .page-progress-container input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    background: transparent;
+  }
+  
+  .page-progress-container input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  
+  .page-progress-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -6px;
+  }
+  
+  .page-progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  
+  .monthly-goal-completed {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #4CAF50;
+  }
+  
+  .add-to-collection-btn {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-collection-btn:hover {
+    background-color: #ff5877;
+  }
+  
+  /* Book Collection Section */
+  .book-collection {
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .book-card {
+    background: rgba(30, 30, 30, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+  }
+  
+  .book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .book-info {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .book-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  
+  .book-info > p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  
+  .book-info .book-status {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .completed-date {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+  }
+  
+  .book-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .read-again-btn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .read-again-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 62, 88, 0.2);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .reading-journal-container {
+      padding: 1rem;
+    }
+  
+    .monthly-book-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .book-header {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  
+    .books-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+  
+    .book-preview {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .books-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+  }
