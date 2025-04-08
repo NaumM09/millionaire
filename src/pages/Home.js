@@ -1,9 +1,11 @@
 // pages/Home.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getDocument} from '../firebase'; // Import the Firebase utility functions
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import './Home.css';
 
-// Custom SVG icons
+// Custom SVG icons (unchanged)
 const BriefcaseIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
@@ -65,6 +67,76 @@ const Home = () => {
     seconds: 0
   });
   const [isBirthday, setIsBirthday] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [journeyTimeline, setJourneyTimeline] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [targetDate, setTargetDate] = useState(null);
+  
+  // Listen for authentication state changes
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        try {
+          // Fetch user data
+          const userData = await getDocument('users', user.uid);
+          
+          if (userData) {
+            setUserData(userData);
+          }
+          
+          // Fetch user settings for countdown target date
+          const userSettings = await getDocument('userSettings', user.uid);
+          
+          if (userSettings && userSettings.targetDate) {
+            // Convert Firestore timestamp to JS Date
+            setTargetDate(userSettings.targetDate.toDate());
+          } else {
+            // Default to 30th birthday if not set
+            setTargetDate(new Date('2028-04-09T00:00:00'));
+          }
+          
+          // Fetch journey timeline
+          const userJourney = await getDocument('userJourney', user.uid);
+          
+          if (userJourney && userJourney.timeline) {
+            setJourneyTimeline(userJourney.timeline);
+          } else {
+            // Use default timeline if not set
+            setJourneyTimeline([
+              { year: "University", label: "The Spark", description: "Graduated with a head full of dreams (and probably student debt)." },
+              { year: "22", label: "The Launchpad", description: "Set the foundation. Real life: unlocked." },
+              { year: "23–24", label: "The First Swing", description: "Built a startup. Grit, grind, and glorious mistakes." },
+              { year: "25", label: "The Detour", description: "Took a job. Tried adulting. It was... informative." },
+              { year: "26", label: "The Escape", description: "Left the 9-5. Freedom tasted like cold brew and uncertainty." },
+              { year: "27", label: "The Return", description: "Back in the startup game. Still searching for the million-dollar spark." },
+              { year: "30", label: "The Verdict", description: "Millionaire? Job seeker? TBD. Countdown in motion." }
+            ]);
+          }
+          
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          setLoading(false);
+        }
+      } else {
+        // No user is signed in, use default values
+        setTargetDate(new Date('2028-04-09T00:00:00'));
+        setJourneyTimeline([
+          { year: "University", label: "The Spark", description: "Graduated with a head full of dreams (and probably student debt)." },
+          { year: "22", label: "The Launchpad", description: "Set the foundation. Real life: unlocked." },
+          { year: "23–24", label: "The First Swing", description: "Built a startup. Grit, grind, and glorious mistakes." },
+          { year: "25", label: "The Detour", description: "Took a job. Tried adulting. It was... informative." },
+          { year: "26", label: "The Escape", description: "Left the 9-5. Freedom tasted like cold brew and uncertainty." },
+          { year: "27", label: "The Return", description: "Back in the startup game. Still searching for the million-dollar spark." },
+          { year: "30", label: "The Verdict", description: "Millionaire? Job seeker? TBD. Countdown in motion." }
+        ]);
+        setLoading(false);
+      }
+    });
+    
+    return () => unsubscribe();
+  }, []);
   
   // Check if today is birthday
   useEffect(() => {
@@ -77,9 +149,9 @@ const Home = () => {
     }
   }, []);
   
-  // Calculate time until 30th birthday
+  // Calculate time until target date
   useEffect(() => {
-    const targetDate = new Date('2028-04-09T00:00:00'); // 30th birthday
+    if (!targetDate) return;
     
     const calculateTimeLeft = () => {
       const now = new Date();
@@ -111,7 +183,7 @@ const Home = () => {
     calculateTimeLeft(); // Initial calculation
     
     return () => clearInterval(timer);
-  }, []);
+  }, [targetDate]);
   
   const quickLinks = [
     { path: '/projects', label: 'Projects', icon: <BriefcaseIcon /> },
@@ -120,16 +192,9 @@ const Home = () => {
     { path: '/reading', label: 'Reading List', icon: <BookIcon /> },
   ];
   
-  // Journey timeline data with updated content
-  const journeyTimeline = [
-    { year: "University", label: "The Spark", description: "Graduated with a head full of dreams (and probably student debt)." },
-    { year: "22", label: "The Launchpad", description: "Set the foundation. Real life: unlocked." },
-    { year: "23–24", label: "The First Swing", description: "Built a startup. Grit, grind, and glorious mistakes." },
-    { year: "25", label: "The Detour", description: "Took a job. Tried adulting. It was... informative." },
-    { year: "26", label: "The Escape", description: "Left the 9-5. Freedom tasted like cold brew and uncertainty." },
-    { year: "27", label: "The Return", description: "Back in the startup game. Still searching for the million-dollar spark." },
-    { year: "30", label: "The Verdict", description: "Millionaire? Job seeker? TBD. Countdown in motion." }
-  ];
+  if (loading) {
+    return <div className="loading">Loading your journey...</div>;
+  }
   
   return (
     <div className="home-container">
@@ -138,7 +203,7 @@ const Home = () => {
       {isBirthday && (
         <div className="birthday-message">
           <div className="cake-icon"><CakeIcon /></div>
-          <h2>Happy Birthday Naum!</h2>
+          <h2>Happy Birthday {userData?.displayName || 'Naum'}!</h2>
           <p>It's your day! May your inbox overflow with VC offers and your coffee always stay hot. Keep going, you've got this.</p>
           <div className="confetti"></div>
         </div>
@@ -225,7 +290,7 @@ const Home = () => {
             </p>
             
             <div className="cta-buttons">
-              <a href="mailto:naum@forexfuturescrypto.com" className="cta-button primary">Drop Some Wisdom</a>
+              <a href={`mailto:${userData?.email || 'naum@forexfuturescrypto.com'}`} className="cta-button primary">Drop Some Wisdom</a>
               <button className="cta-button secondary">Follow the Madness</button>
             </div>
           </div>

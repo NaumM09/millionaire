@@ -1,6 +1,7 @@
 // App.js - Main component
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { FirebaseProvider } from './firebaseContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
@@ -23,21 +24,23 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <div className="app">
-        <Navbar isMobile={isMobile} />
-        <main className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/fitness" element={<Fitness />} />
-            <Route path="/trading-journal" element={<TradingJournal />} />
-            <Route path="/reading" element={<Reading />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <FirebaseProvider>
+      <Router>
+        <div className="app">
+          <Navbar isMobile={isMobile} />
+          <main className="content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/fitness" element={<Fitness />} />
+              <Route path="/trading-journal" element={<TradingJournal />} />
+              <Route path="/reading" element={<Reading />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </FirebaseProvider>
   );
 };
 
