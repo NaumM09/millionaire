@@ -1,23 +1,21 @@
 import { initializeApp } from 'firebase/app';
-// import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyCqu3z3F-YSUPXcmHd94NerFNSEdvbDz1s",
+  authDomain: "millionaire-journey-ed8df.firebaseapp.com",
+  projectId: "millionaire-journey-ed8df",
+  storageBucket: "millionaire-journey-ed8df.appspot.com", // Note: fixed the storageBucket URL
+  messagingSenderId: "1009190478365",
+  appId: "1:1009190478365:web:d8af52f36ab402a8b15cf4",
+  measurementId: "G-7P2ED91FBJ"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 
 // Initialize Firebase services
 const auth = getAuth(app);
