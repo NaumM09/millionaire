@@ -1,8 +1,22 @@
 // pages/Fitness.js
 import React, { useState, useEffect } from 'react';
+import { auth } from './../config';
+import { 
+  getFitnessJournalEntries, 
+  addFitnessJournalEntry, 
+  likeFitnessJournalEntry,
+  getFitnessGoals,
+  addFitnessGoal,
+  // Removed unused import: updateFitnessGoal
+  getWorkoutCompletion,
+  saveWorkoutCompletion,
+  getProgressData,
+  saveProgressData,
+  isCurrentUserAdmin
+} from './../fitnessutils';
 import './Fitness.css';
 
-// Custom SVG icons
+// SVG icon components remain the same...
 const HeartIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
@@ -69,46 +83,38 @@ const CalendarIcon = () => (
 );
 
 const Fitness = () => {
-  // Sample goals data with metric units
-  const [goals] = useState([
-    { id: 1, title: "Bench press 100 kg", category: "strength", progress: 75, target: "80 kg", current: "30 kg" },
-    { id: 2, title: "Run 5 km under 40 minutes", category: "cardio", progress: 60, target: "40 min", current: "58 min" },
-    { id: 3, title: "Lose 7 kg of fat", category: "weight", progress: 40, target: "77 kg", current: "83.4 kg" },
-    { id: 4, title: "10 consecutive pull-ups", category: "strength", progress: 50, target: "10", current: "0" }
-  ]);
+  // State for user authentication
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  // State for fitness goals (from Firebase)
+  const [goals, setGoals] = useState([]);
+  const [isAddingGoal, setIsAddingGoal] = useState(false);
+  const [newGoal, setNewGoal] = useState({
+    title: '',
+    category: 'strength',
+    target: '',
+    current: '',
+    progress: 0
+  });
   
-  // Sample progress data for charts
-  const [progressData] = useState({
+  // State for progress data (from Firebase)
+  const [progressData, setProgressData] = useState({
     weight: [84, 83, 82, 81.5, 81, 80.5, 80], // in kg
     bodyFat: [18, 17.5, 17, 16.8, 16.5, 16, 15.8], // percentage
     workoutsPerWeek: [3, 4, 3, 5, 4, 5, 5]
   });
   
-  // Sample journal entries with metric units
-  const [journalEntries, setJournalEntries] = useState([
-    { 
-      id: 1, 
-      content: "Hit a new PR on squats today - 125 kg for 5 reps! Legs feeling strong 💪 Recovery smoothie after: banana, protein, berries, peanut butter.",
-      date: "2 days ago",
-      likes: 5
-    },
-    { 
-      id: 2, 
-      content: "Morning cardio: 8 km at 4:45 min/km pace. Feeling good but need to work on breathing rhythm. Goal is to drop to 4:20 pace by next month.",
-      date: "4 days ago",
-      likes: 3
-    },
-    { 
-      id: 3, 
-      content: "Rest day. Focusing on mobility work and stretching. Added 15 min of meditation to help with stress levels.",
-      date: "1 week ago",
-      likes: 7
-    }
-  ]);
+  // State for journal entries (from Firebase)
+  const [journalEntries, setJournalEntries] = useState([]);
+  const [journalLoading, setJournalLoading] = useState(true);
   
   // State for new journal entry
   const [newEntry, setNewEntry] = useState("");
   const [remainingChars, setRemainingChars] = useState(260);
+  const [submittingEntry, setSubmittingEntry] = useState(false);
   
   // Workout routine data
   const [workoutRoutines] = useState({
@@ -152,7 +158,6 @@ const Fitness = () => {
         { name: "Seated Press Machine", sets: "3", reps: "12" },
         { name: "Inclined Press", sets: "3", reps: "12" },
         { name: "Cable Flys", sets: "3", reps: "12" },
-    
       ]
     },
     Friday: {
@@ -184,14 +189,8 @@ const Fitness = () => {
   const currentMonth = today.toLocaleDateString('en-US', { month: 'long' });
   const currentYear = today.getFullYear();
   
-  // State for tracking completed workouts
+  // State for tracking completed workouts (from Firebase)
   const [completedWorkouts, setCompletedWorkouts] = useState(() => {
-    // Initialize from localStorage or create empty tracking
-    const savedData = localStorage.getItem('completedWorkouts');
-    if (savedData) {
-      return JSON.parse(savedData);
-    }
-    
     // Initialize empty tracking for current month
     const initialData = {};
     initialData[`${currentMonth}-${currentYear}`] = {
@@ -205,26 +204,155 @@ const Fitness = () => {
 
   // State to select the day to view/check workouts
   const [selectedDay, setSelectedDay] = useState(currentDay);
-
+  
+  // Load all fitness data from Firebase
+  const loadFitnessData = async () => {
+    setLoading(true);
+    
+    try {
+      // Load journal entries
+      await loadJournalEntries();
+      
+      // Load goals
+      await loadFitnessGoals();
+      
+      // Load workout tracking data
+      await loadWorkoutTracking();
+      
+      // Load progress data
+      await loadProgressData();
+    } catch (error) {
+      console.error('Error loading fitness data:', error);
+      setError('Error loading fitness data');
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  // Check authentication state and load initial data
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      setCurrentUser(user);
+      
+      if (user) {
+        try {
+          // Check if user is admin
+          const adminStatus = await isCurrentUserAdmin();
+          setIsAdmin(adminStatus);
+          
+          // Load initial data
+          await loadFitnessData();
+        } catch (err) {
+          console.error('Error loading fitness data:', err);
+          setError('Failed to load some fitness data. Please try refreshing the page.');
+        }
+      } else {
+        setIsAdmin(false);
+      }
+      
+      setLoading(false);
+    });
+    
+    return () => unsubscribe();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  
+  // Load journal entries from Firebase
+  const loadJournalEntries = async () => {
+    setJournalLoading(true);
+    
+    try {
+      const entries = await getFitnessJournalEntries();
+      setJournalEntries(entries);
+    } catch (error) {
+      console.error('Error loading journal entries:', error);
+    } finally {
+      setJournalLoading(false);
+    }
+  };
+  
+  // Load fitness goals from Firebase
+  const loadFitnessGoals = async () => {
+    try {
+      const loadedGoals = await getFitnessGoals();
+      
+      if (loadedGoals.length > 0) {
+        setGoals(loadedGoals);
+      } else if (isAdmin) {
+        // Only initialize default goals for admin if none exist
+        // You can add code here to create default goals in Firebase if needed
+      }
+    } catch (error) {
+      console.error('Error loading fitness goals:', error);
+    }
+  };
+  
+  // Load workout tracking data from Firebase
+  const loadWorkoutTracking = async () => {
+    try {
+      const workoutData = await getWorkoutCompletion();
+      
+      if (workoutData) {
+        setCompletedWorkouts(workoutData);
+      } else if (isAdmin) {
+        // If no workout data exists and user is admin, initialize it
+        // and save to Firebase
+        const initialData = {
+          [`${currentMonth}-${currentYear}`]: {
+            days: {},
+            totalDays: 0,
+            completedDays: 0
+          }
+        };
+        
+        setCompletedWorkouts(initialData);
+        await saveWorkoutCompletion(initialData);
+      }
+    } catch (error) {
+      console.error('Error loading workout tracking data:', error);
+    }
+  };
+  
+  // Load progress data from Firebase
+  const loadProgressData = async () => {
+    try {
+      const data = await getProgressData();
+      
+      if (data) {
+        setProgressData(data);
+      } else if (isAdmin) {
+        // If no progress data exists and user is admin, save default data to Firebase
+        await saveProgressData(progressData);
+      }
+    } catch (error) {
+      console.error('Error loading progress data:', error);
+    }
+  };
+  
   // Generate tracking stats for current month
   useEffect(() => {
+    if (!isAdmin) return; // Only admin can update tracking data
+    
     const currentMonthKey = `${currentMonth}-${currentYear}`;
     
     // Initialize current month if not exists
     if (!completedWorkouts[currentMonthKey]) {
-      setCompletedWorkouts(prev => ({
-        ...prev,
+      const updatedWorkouts = {
+        ...completedWorkouts,
         [currentMonthKey]: {
           days: {},
           totalDays: 0,
           completedDays: 0
         }
-      }));
+      };
+      
+      setCompletedWorkouts(updatedWorkouts);
+      
+      // Save to Firebase
+      saveWorkoutCompletion(updatedWorkouts).catch(error => {
+        console.error('Error saving workout data:', error);
+      });
     }
-    
-    // Save to localStorage when changes occur
-    localStorage.setItem('completedWorkouts', JSON.stringify(completedWorkouts));
-  }, [completedWorkouts, currentMonth, currentYear]);
+  }, [completedWorkouts, currentMonth, currentYear, isAdmin]);
   
   // For displaying month progress information
   const getMonthProgressInfo = () => {
@@ -262,7 +390,12 @@ const Fitness = () => {
   };
 
   // Toggle completion status of a workout
-  const toggleExerciseCompletion = (day, exerciseIndex) => {
+  const toggleExerciseCompletion = async (day, exerciseIndex) => {
+    if (!isAdmin) {
+      alert('Only the admin can update workout completion');
+      return;
+    }
+    
     const currentMonthKey = `${currentMonth}-${currentYear}`;
     
     // Create deep copy of the state
@@ -297,10 +430,24 @@ const Fitness = () => {
     updatedWorkouts[currentMonthKey].totalDays = totalDaysWithWorkouts;
     
     setCompletedWorkouts(updatedWorkouts);
+    
+    // Save to Firebase
+    try {
+      await saveWorkoutCompletion(updatedWorkouts);
+    } catch (error) {
+      console.error('Error saving workout data:', error);
+      // Revert the state if save fails
+      setCompletedWorkouts(completedWorkouts);
+    }
   };
 
   // Mark all exercises for a day as complete
-  const markDayComplete = (day) => {
+  const markDayComplete = async (day) => {
+    if (!isAdmin) {
+      alert('Only the admin can update workout completion');
+      return;
+    }
+    
     const currentMonthKey = `${currentMonth}-${currentYear}`;
     
     // Create deep copy of the state
@@ -326,6 +473,15 @@ const Fitness = () => {
     updatedWorkouts[currentMonthKey].totalDays = totalDaysWithWorkouts;
     
     setCompletedWorkouts(updatedWorkouts);
+    
+    // Save to Firebase
+    try {
+      await saveWorkoutCompletion(updatedWorkouts);
+    } catch (error) {
+      console.error('Error saving workout data:', error);
+      // Revert the state if save fails
+      setCompletedWorkouts(completedWorkouts);
+    }
   };
   
   // Handle input change for new journal entry
@@ -338,18 +494,97 @@ const Fitness = () => {
   };
   
   // Add new journal entry
-  const addJournalEntry = () => {
-    if (newEntry.trim() !== "") {
-      const newEntryObj = {
-        id: Date.now(),
-        content: newEntry,
-        date: "Just now",
-        likes: 0
-      };
+  const addJournalEntry = async () => {
+    if (!currentUser) {
+      alert('Please sign in to add a journal entry');
+      return;
+    }
+    
+    if (!isAdmin) {
+      alert('Only the admin can add journal entries');
+      return;
+    }
+    
+    if (newEntry.trim() === "") {
+      return;
+    }
+    
+    setSubmittingEntry(true);
+    
+    try {
+      // Save to Firebase
+      const newEntryObj = await addFitnessJournalEntry(newEntry);
       
+      // Update local state with the new entry
       setJournalEntries([newEntryObj, ...journalEntries]);
+      
+      // Clear input
       setNewEntry("");
       setRemainingChars(260);
+    } catch (error) {
+      console.error('Error adding journal entry:', error);
+      alert('Failed to add journal entry: ' + error.message);
+    } finally {
+      setSubmittingEntry(false);
+    }
+  };
+  
+  // Like a journal entry
+  const handleLikeEntry = async (entryId) => {
+    if (!currentUser) {
+      alert('Please sign in to like entries');
+      return;
+    }
+    
+    try {
+      const result = await likeFitnessJournalEntry(entryId);
+      
+      // Update the local state
+      setJournalEntries(entries =>
+        entries.map(entry => 
+          entry.id === entryId
+            ? { ...entry, likes: result.likes, liked: result.liked }
+            : entry
+        )
+      );
+    } catch (error) {
+      console.error('Error liking entry:', error);
+    }
+  };
+  
+  // Handle adding new goal
+  const handleAddGoal = async () => {
+    if (!isAdmin) {
+      alert('Only the admin can add goals');
+      return;
+    }
+    
+    if (!newGoal.title.trim() || !newGoal.target.trim()) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    try {
+      // Save goal to Firebase
+      const goalResult = await addFitnessGoal(newGoal);
+      
+      // Update local state
+      setGoals([...goals, goalResult]);
+      
+      // Reset form
+      setNewGoal({
+        title: '',
+        category: 'strength',
+        target: '',
+        current: '',
+        progress: 0
+      });
+      
+      // Close the form
+      setIsAddingGoal(false);
+    } catch (error) {
+      console.error('Error adding goal:', error);
+      alert('Failed to add goal: ' + error.message);
     }
   };
   
@@ -426,12 +661,27 @@ const Fitness = () => {
     return completedWorkouts[currentMonthKey]?.days[day]?.exercises?.[exerciseIndex] || false;
   };
   
+  // If loading, show loading indicator
+  if (loading) {
+    return (
+      <div className="fitness-container loading">
+        <div className="loading-indicator">Loading fitness data...</div>
+      </div>
+    );
+  }
+  
   return (
     <div className="fitness-container">
       <header className="page-header">
         <h1>Fitness Journey</h1>
         <p>Track progress, set goals, and document the journey to peak physical performance</p>
       </header>
+      
+      {error && (
+        <div className="error-message">
+          {error}
+        </div>
+      )}
       
       <div className="fitness-dashboard">
         {/* Workout Routine Section */}
@@ -488,25 +738,33 @@ const Fitness = () => {
               {currentDay === selectedDay && (
                 <div className="today-indicator">Today</div>
               )}
-              <button 
-                className={`complete-day-btn ${isDayCompleted(selectedDay) ? 'completed' : ''}`}
-                onClick={() => markDayComplete(selectedDay)}
-              >
-                {isDayCompleted(selectedDay) ? 'Completed' : 'Mark All Complete'}
-              </button>
+              {isAdmin && (
+                <button 
+                  className={`complete-day-btn ${isDayCompleted(selectedDay) ? 'completed' : ''}`}
+                  onClick={() => markDayComplete(selectedDay)}
+                >
+                  {isDayCompleted(selectedDay) ? 'Completed' : 'Mark All Complete'}
+                </button>
+              )}
             </div>
             
             <div className="exercise-list">
               {workoutRoutines[selectedDay].exercises.map((exercise, index) => (
                 <div className="exercise-item" key={index}>
-                  <label className="exercise-checkbox">
-                    <input 
-                      type="checkbox" 
-                      checked={isExerciseCompleted(selectedDay, index)}
-                      onChange={() => toggleExerciseCompletion(selectedDay, index)}
-                    />
-                    <span className="checkmark"></span>
-                  </label>
+                  {isAdmin ? (
+                    <label className="exercise-checkbox">
+                      <input 
+                        type="checkbox" 
+                        checked={isExerciseCompleted(selectedDay, index)}
+                        onChange={() => toggleExerciseCompletion(selectedDay, index)}
+                      />
+                      <span className="checkmark"></span>
+                    </label>
+                  ) : (
+                    <div className={`exercise-status-icon ${isExerciseCompleted(selectedDay, index) ? 'completed' : ''}`}>
+                      {isExerciseCompleted(selectedDay, index) && <CheckIcon />}
+                    </div>
+                  )}
                   <div className="exercise-details">
                     <div className="exercise-name">{exercise.name}</div>
                     <div className="exercise-prescription">{exercise.sets} sets × {exercise.reps}</div>
@@ -552,10 +810,81 @@ const Fitness = () => {
               </div>
             ))}
             
-            <div className="add-goal-card">
-              <div className="add-icon"><PlusIcon /></div>
-              <p>Add New Goal</p>
-            </div>
+            {isAdmin && (
+              isAddingGoal ? (
+                <div className="add-goal-form">
+                  <h3>Add New Goal</h3>
+                  <input
+                    type="text"
+                    placeholder="Goal Title"
+                    value={newGoal.title}
+                    onChange={(e) => setNewGoal({...newGoal, title: e.target.value})}
+                    className="goal-input"
+                  />
+                  
+                  <select
+                    value={newGoal.category}
+                    onChange={(e) => setNewGoal({...newGoal, category: e.target.value})}
+                    className="goal-select"
+                  >
+                    <option value="strength">Strength</option>
+                    <option value="cardio">Cardio</option>
+                    <option value="weight">Weight</option>
+                  </select>
+                  
+                  <div className="goal-input-row">
+                    <input
+                      type="text"
+                      placeholder="Target value"
+                      value={newGoal.target}
+                      onChange={(e) => setNewGoal({...newGoal, target: e.target.value})}
+                      className="goal-input"
+                    />
+                    
+                    <input
+                      type="text"
+                      placeholder="Current value"
+                      value={newGoal.current}
+                      onChange={(e) => setNewGoal({...newGoal, current: e.target.value})}
+                      className="goal-input"
+                    />
+                  </div>
+                  
+                  <input
+                    type="number"
+                    placeholder="Progress %"
+                    value={newGoal.progress}
+                    onChange={(e) => setNewGoal({...newGoal, progress: parseInt(e.target.value) || 0})}
+                    min="0"
+                    max="100"
+                    className="goal-input"
+                  />
+                  
+                  <div className="goal-form-buttons">
+                    <button 
+                      className="cancel-goal-btn"
+                      onClick={() => setIsAddingGoal(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      className="save-goal-btn"
+                      onClick={handleAddGoal}
+                    >
+                      Save Goal
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div 
+                  className="add-goal-card"
+                  onClick={() => setIsAddingGoal(true)}
+                >
+                  <div className="add-icon"><PlusIcon /></div>
+                  <p>Add New Goal</p>
+                </div>
+              )
+            )}
           </div>
         </section>
         
@@ -600,45 +929,56 @@ const Fitness = () => {
         <section className="fitness-journal">
           <h2>Fitness Journal</h2>
           
-          <div className="journal-composer">
-            <textarea 
-              placeholder="Share your workout, progress or fitness thoughts (260 chars max)..."
-              value={newEntry}
-              onChange={handleEntryChange}
-              maxLength={260}
-            ></textarea>
-            
-            <div className="composer-footer">
-              <div className={`char-counter ${remainingChars < 20 ? 'low' : ''}`}>
-                {remainingChars} characters left
+          {isAdmin && (
+            <div className="journal-composer">
+              <textarea 
+                placeholder="Share your workout, progress or fitness thoughts (260 chars max)..."
+                value={newEntry}
+                onChange={handleEntryChange}
+                maxLength={260}
+              ></textarea>
+              
+              <div className="composer-footer">
+                <div className={`char-counter ${remainingChars < 20 ? 'low' : ''}`}>
+                  {remainingChars} characters left
+                </div>
+                <button 
+                  className="post-btn"
+                  onClick={addJournalEntry}
+                  disabled={newEntry.trim() === "" || submittingEntry}
+                >
+                  {submittingEntry ? 'Posting...' : 'Post'}
+                </button>
               </div>
-              <button 
-                className="post-btn"
-                onClick={addJournalEntry}
-                disabled={newEntry.trim() === ""}
-              >
-                Post
-              </button>
             </div>
-          </div>
+          )}
           
           <div className="journal-entries">
-            {journalEntries.map(entry => (
-              <div className="journal-entry" key={entry.id}>
-                <div className="entry-content">{entry.content}</div>
-                <div className="entry-footer">
-                  <div className="entry-date">{entry.date}</div>
-                  <div className="entry-actions">
-                    <button className="like-btn">
-                      <ThumbsUpIcon /> {entry.likes}
-                    </button>
-                    <button className="comment-btn">
-                      <CommentIcon />
-                    </button>
+            {journalLoading ? (
+              <div className="loading-entries">Loading journal entries...</div>
+            ) : journalEntries.length === 0 ? (
+              <div className="no-entries">No journal entries yet.</div>
+            ) : (
+              journalEntries.map(entry => (
+                <div className="journal-entry" key={entry.id}>
+                  <div className="entry-content">{entry.content}</div>
+                  <div className="entry-footer">
+                    <div className="entry-date">{entry.date}</div>
+                    <div className="entry-actions">
+                      <button 
+                        className={`like-btn ${entry.liked ? 'liked' : ''}`}
+                        onClick={() => handleLikeEntry(entry.id)}
+                      >
+                        <ThumbsUpIcon /> {entry.likes}
+                      </button>
+                      <button className="comment-btn">
+                        <CommentIcon />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </section>
       </div>
