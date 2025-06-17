@@ -209,7 +209,7 @@ const PremiumPortfolio = () => {
       title: "Lume Shopping App",
       subtitle: "Web Application & Product Design",
       category: "E-commerce",
-      image: "https://i.ibb.co/yBqWkJhW/Desktop-6-2.png",
+      image: "https://i.ibb.co/Wp7RvNbb/Chat-GPT-Image-Jun-17-2025-07-05-37-PM.png",
       metrics: "100K+ downloads in 3 months",
       color: "from-green-500 to-emerald-500",
       duration: "4 months",
