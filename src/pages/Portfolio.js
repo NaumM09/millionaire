@@ -122,240 +122,258 @@ const PremiumPortfolio = () => {
     }
   ];
 
-  const caseStudies = [
+ const caseStudies = [
     {
       id: 1,
-      title: "EcoToken - ESG Tokenised Projects Platfrom",
-      subtitle: "Reimagining the future of crypto investment projects",
-      category: "FinTech",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=800&fit=crop",
-      metrics: "65% increase in satisfaction",
-      color: "from-blue-500 to-cyan-500",
-      duration: "6 months",
-      role: "Lead UX Designer",
-      team: "PM, 3 Engineers, UX Researcher",
+      title: "EcoToken - ESG Tokenized Projects Platform",
+      subtitle: "Democratizing sustainable investments through blockchain",
+      category: "FinTech / Crypto",
+      image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&h=800&fit=crop",
+      metrics: "300% increase in project funding success",
+      color: "from-green-500 to-blue-500",
+      duration: "8 months",
+      role: "Lead Product Designer",
+      team: "Product Manager, Blockchain Engineers, ESG Specialist",
       year: "2024",
       
-      overview: "A complete redesign of a legacy banking platform serving 50,000+ daily users. The project focused on simplifying complex financial workflows while maintaining security and compliance standards.",
+      overview: "Designing a groundbreaking platform that transforms real-world ESG projects into investable crypto tokens, making sustainable investing accessible to retail investors while providing transparent impact tracking.",
       
       problem: {
         title: "The Challenge",
-        description: "Users were abandoning transactions due to confusing navigation and outdated interface patterns. Customer support tickets increased 40% year-over-year.",
+        description: "Traditional ESG investing is limited to institutional investors with high minimum investments. Retail investors lack access to transparent, verifiable sustainable projects with clear impact metrics.",
         painPoints: [
-          "Complex 8-step transaction process",
-          "Inconsistent UI patterns across modules", 
-          "Poor mobile experience (12% mobile usage)",
-          "High cognitive load for financial tasks"
+          "High barriers to entry for sustainable investing ($10K+ minimums)",
+          "Lack of transparency in traditional ESG funds",
+          "No real-time tracking of environmental impact",
+          "Complex verification process for project authenticity",
+          "Limited liquidity in traditional sustainable investments"
         ]
       },
       
       research: {
         title: "Research & Discovery",
         methods: [
-          "User interviews with 25 existing customers",
-          "Competitive analysis of 8 banking platforms",
-          "Analytics review of 6 months of user data",
-          "Stakeholder workshops with compliance team"
+          "Interviews with 30 retail crypto investors",
+          "Surveys with 150+ sustainability-focused individuals",
+          "Expert consultations with ESG fund managers",
+          "Analysis of existing tokenization platforms",
+          "Blockchain user behavior analysis"
         ],
         keyFindings: [
-          "78% of users preferred mobile-first approach",
-          "Average task completion time was 12 minutes",
-          "Users abandoned at step 3 of transaction flow",
-          "Trust indicators were critical for adoption"
+          "78% of crypto investors want sustainable options",
+          "Users need proof of real-world impact to invest",
+          "Mobile-first approach critical for younger demographics",
+          "Trust and verification are top concerns in crypto",
+          "Simple onboarding essential for mainstream adoption"
         ]
       },
       
       solution: {
         title: "Design Solution",
         approach: [
-          "Mobile-first responsive redesign",
-          "Simplified 3-step transaction flow",
-          "Unified design system implementation",
-          "Progressive disclosure for complex features"
+          "Simplified token investment flow with educational guidance",
+          "Real-time impact dashboard with satellite data integration",
+          "Blockchain-verified project authenticity system",
+          "Mobile-first responsive design for accessibility",
+          "Gamified impact tracking and community features"
         ],
         keyFeatures: [
-          "Dashboard with customizable widgets",
-          "One-click transaction templates",
-          "Real-time notification system",
-          "Advanced filtering and search"
+          "One-click token purchasing with fiat integration",
+          "Live project progress tracking with photos/videos",
+          "Carbon offset calculator and impact visualization",
+          "Social proof through community investment tracking",
+          "Educational content about ESG projects and tokenization"
         ]
       },
       
       results: {
         title: "Impact & Results",
         metrics: [
-          { label: "User Satisfaction", before: "52%", after: "87%", change: "+65%" },
-          { label: "Task Completion Time", before: "12 min", after: "4 min", change: "-67%" },
-          { label: "Mobile Usage", before: "12%", after: "48%", change: "+300%" },
-          { label: "Support Tickets", before: "450/month", after: "180/month", change: "-60%" }
+          { label: "Platform Adoption", before: "0", after: "25K+ users", change: "Launch" },
+          { label: "Projects Funded", before: "N/A", after: "150+ projects", change: "New" },
+          { label: "Total Investments", before: "0", after: "$12M+", change: "Launch" },
+          { label: "User Retention (90d)", before: "N/A", after: "68%", change: "New" }
         ],
         businessImpact: [
-          "€2.5M annual savings in support costs",
-          "40% increase in daily active users", 
-          "95% user adoption rate within 3 months",
-          "Featured as case study by banking industry publication"
+          "$12M+ in sustainable project funding raised",
+          "Partnership with 50+ verified ESG projects globally",
+          "Featured in CoinDesk and TechCrunch",
+          "Winner of Sustainable FinTech Innovation Award 2024",
+          "300% higher funding success rate vs traditional crowdfunding"
         ]
       },
       
       gallery: [
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
+        "https://i.ibb.co/bMrKXk6x/Screenshot-2025-06-18-171837.png",
+        "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop",
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
       ]
     },
     {
       id: 2,
-      title: "Lume Shopping App",
-      subtitle: "Web Application & Product Design",
-      category: "E-commerce",
+      title: "Lume - Luxury Eyewear Experience",
+      subtitle: "Concept design for premium eyewear retail innovation",
+      category: "Luxury E-commerce ",
       image: "https://i.ibb.co/Wp7RvNbb/Chat-GPT-Image-Jun-17-2025-07-05-37-PM.png",
-      metrics: "100K+ downloads in 3 months",
-      color: "from-green-500 to-emerald-500",
-      duration: "4 months",
-      role: "Solo UX/UI Designer",
-      team: "Product Owner, 2 iOS Developers, Data Scientist",
+      metrics: "Concept exploration",
+      color: "from-amber-500 to-orange-500",
+      duration: "Design concept",
+      role: "UX/UI Designer",
+      team: "Solo concept project",
       year: "2024",
       
-      overview: "Designing a mobile-first sustainable shopping platform that helps eco-conscious consumers discover and purchase from verified green brands with AI-powered sustainability scoring.",
+      overview: "A conceptual exploration of how luxury eyewear brands could bridge the gap between high-end retail and online shopping through AR try-on technology and premium digital experiences.",
       
       problem: {
         title: "The Challenge",
-        description: "Consumers want to shop sustainably but struggle to identify truly eco-friendly products. Existing solutions lack transparency and verification.",
+        description: "Luxury eyewear customers hesitate to purchase high-end frames online without trying them on. Traditional e-commerce doesn't convey the premium quality and craftsmanship that justifies luxury pricing.",
         painPoints: [
-          "Greenwashing makes it hard to trust claims",
-          "No unified sustainability scoring system",
-          "Sustainable products scattered across platforms",
-          "Higher prices without clear value justification"
-        ]
-      },
-      
-      research: {
-        title: "Research & Discovery", 
-        methods: [
-          "In-depth interviews with 20 eco-conscious shoppers",
-          "Survey of 200+ sustainability-minded consumers",
-          "Market analysis of 15 competitor apps",
-          "Expert interviews with sustainability consultants"
-        ],
-        keyFindings: [
-          "89% want transparent sustainability metrics",
-          "Users willing to pay 15% premium for verified eco products",
-          "Mobile shopping preferred for quick decisions",
-          "Community features increase purchase confidence"
-        ]
-      },
-      
-      solution: {
-        title: "Design Solution",
-        approach: [
-          "AI-powered sustainability scoring algorithm",
-          "Brand verification and transparency system",
-          "Gamified sustainable shopping experience",
-          "Community-driven reviews and recommendations"
-        ],
-        keyFeatures: [
-          "Real-time sustainability score (0-100)",
-          "Carbon footprint calculator per purchase",
-          "Eco-impact tracking and achievements",
-          "Curated sustainable brand discovery"
-        ]
-      },
-      
-      results: {
-        title: "Impact & Results",
-        metrics: [
-          { label: "App Downloads", before: "0", after: "100K+", change: "New" },
-          { label: "User Retention (30d)", before: "N/A", after: "75%", change: "New" },
-          { label: "Avg Session Time", before: "N/A", after: "8.5 min", change: "New" },
-          { label: "Purchase Conversion", before: "N/A", after: "12%", change: "New" }
-        ],
-        businessImpact: [
-          "Featured in Apple App Store sustainability category",
-          "€2M+ gross merchandise value in first quarter",
-          "Partnership with 150+ verified sustainable brands",
-          "Winner of Green Tech Innovation Award 2024"
-        ]
-      },
-      
-      gallery: [
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=600&fit=crop"
-      ]
-    },
-    {
-      id: 3,
-      title: "MediConnect Dashboard",
-      subtitle: "Streamlining healthcare workflows",
-      category: "Healthcare",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1200&h=800&fit=crop",
-      metrics: "30% faster clinical workflows",
-      color: "from-purple-500 to-pink-500",
-      duration: "8 months",
-      role: "Senior UX Designer",
-      team: "UX Researcher, Product Manager, 4 Engineers, Clinical Advisor",
-      year: "2023",
-      
-      overview: "Designing a comprehensive healthcare dashboard that enables medical professionals to efficiently manage patient data, appointments, and treatment plans while maintaining HIPAA compliance.",
-      
-      problem: {
-        title: "The Challenge", 
-        description: "Healthcare providers struggled with fragmented systems, leading to inefficient workflows and potential patient care risks. Multiple legacy systems created data silos.",
-        painPoints: [
-          "Data scattered across 5+ different systems",
-          "15-minute average time to access patient records",
-          "No unified view of patient treatment history",
-          "Compliance reporting took 2+ hours daily"
+          "85% cart abandonment for luxury eyewear online",
+          "Customers unable to assess fit and style remotely",
+          "Generic e-commerce experience doesn't match brand premium",
+          "Limited product customization options online",
+          "Lack of personal styling consultation in digital space"
         ]
       },
       
       research: {
         title: "Research & Discovery",
         methods: [
-          "Contextual inquiries with 15 healthcare providers",
-          "Workflow shadowing in 3 hospitals",
-          "Expert interviews with 8 clinical specialists", 
-          "Analysis of existing system usage data"
+          "Market research on luxury eyewear industry",
+          "Competitive analysis of premium fashion e-commerce",
+          "User persona development for luxury consumers",
+          "AR technology capability assessment",
+          "Luxury retail experience benchmarking"
         ],
         keyFindings: [
-          "Doctors spend 62% of time on administrative tasks",
-          "Critical information often buried 3+ clicks deep",
-          "Mobile access needed for 40% of use cases",
-          "Interruptions cause 23% of medical errors"
+          "Premium customers expect personalized experiences",
+          "AR try-on reduces purchase anxiety by 60%",
+          "Storytelling about craftsmanship drives luxury purchases",
+          "Mobile experience must match desktop quality",
+          "White-glove service expected throughout journey"
         ]
       },
       
       solution: {
         title: "Design Solution",
         approach: [
-          "Unified patient dashboard with real-time data",
-          "Role-based information architecture",
-          "Mobile-responsive design for point-of-care access",
-          "Intelligent alerts and automation features"
+          "AR-powered virtual try-on with precise face mapping",
+          "Cinematic product presentation with 360° views",
+          "Personalized styling recommendations based on face shape",
+          "Premium checkout experience with concierge options",
+          "Immersive brand storytelling through interactive content"
         ],
         keyFeatures: [
-          "360° patient view with timeline",
-          "Voice-to-text documentation",
-          "Smart medication interaction alerts",
-          "Collaborative care planning tools"
+          "Advanced AR try-on with lighting simulation",
+          "Bespoke frame customization tool",
+          "Virtual styling consultation booking",
+          "Premium packaging preview and unboxing experience",
+          "Exclusive member access to limited collections"
         ]
       },
       
       results: {
-        title: "Impact & Results", 
+        title: "Concept Outcomes",
         metrics: [
-          { label: "Clinical Efficiency", before: "15 min", after: "10 min", change: "+33%" },
-          { label: "Documentation Time", before: "8 min", after: "5 min", change: "+38%" },
-          { label: "System Errors", before: "12/day", after: "3/day", change: "-75%" },
-          { label: "User Satisfaction", before: "62%", after: "91%", change: "+47%" }
+          { label: "Design System", before: "N/A", after: "Complete", change: "New" },
+          { label: "User Flows", before: "N/A", after: "5 key flows", change: "New" },
+          { label: "Prototype Fidelity", before: "N/A", after: "High-fi", change: "New" },
+          { label: "AR Try-on Flow", before: "N/A", after: "Designed", change: "New" }
         ],
         businessImpact: [
-          "Deployed across 15 major hospital systems",
-          "100% HIPAA compliance maintained",
-          "€5M annual efficiency savings",
-          "90% physician adoption rate within 6 months"
+          "Comprehensive design system for luxury e-commerce",
+          "Innovative AR try-on experience designed",
+          "Premium checkout and customization flows",
+          "Scalable component library created",
+          "Ready for development implementation"
+        ]
+      },
+      
+      gallery: [
+        "https://i.ibb.co/BSJyb1X/Desktop-1-2.png",
+        "https://i.ibb.co/TMdY3Dts/COLOR-3.png",
+        "https://i.ibb.co/DHyskq4B/lUME.png",
+        "https://i.ibb.co/6RwWnxCJ/COLOR-1.png",
+      ]
+    },
+    {
+      id: 3,
+      title: "MediConnect - Clinical Workflow Platform",
+      subtitle: "Healthcare UX concept for streamlined clinical workflows",
+      category: "Healthcare SaaS (Concept)",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1200&h=800&fit=crop",
+      metrics: "Design concept study",
+      color: "from-blue-600 to-purple-600",
+      duration: "Concept exploration",
+      role: "UX Designer",
+      team: "Solo concept project",
+      year: "2024",
+      
+      overview: "A conceptual design exploration addressing the complex challenges of healthcare workflow management, focusing on how better UX design could reduce administrative burden and improve patient care.",
+      
+      problem: {
+        title: "The Challenge", 
+        description: "Healthcare providers spend 60% of their time on administrative tasks due to fragmented systems. Multiple legacy platforms create inefficiencies and increase risk of medical errors.",
+        painPoints: [
+          "Patient data scattered across 5+ different systems",
+          "Average 18 minutes per patient for documentation",
+          "No unified communication between care team members",
+          "Manual processes prone to human error",
+          "Compliance reporting extremely time-consuming"
+        ]
+      },
+      
+      research: {
+        title: "Research & Discovery",
+        methods: [
+          "Healthcare industry research and analysis",
+          "Existing healthcare software audit",
+          "Clinical workflow mapping and optimization", 
+          "Regulatory compliance research (HIPAA, etc.)",
+          "Healthcare professional persona development"
+        ],
+        keyFindings: [
+          "Doctors want single sign-on for all tools",
+          "Critical patient info often requires 4+ clicks to access",
+          "Mobile access needed during patient rounds",
+          "Alerts must be contextual to prevent fatigue",
+          "Integration with existing systems is non-negotiable"
+        ]
+      },
+      
+      solution: {
+        title: "Design Solution",
+        approach: [
+          "Unified patient dashboard with role-based views",
+          "Intelligent information hierarchy based on urgency",
+          "Mobile-responsive design for point-of-care access",
+          "Smart notifications with context-aware filtering",
+          "Seamless integration with existing hospital systems"
+        ],
+        keyFeatures: [
+          "360° patient timeline with predictive insights",
+          "Voice-enabled documentation and navigation",
+          "Real-time care team collaboration tools",
+          "Automated compliance reporting dashboard",
+          "Customizable workflows by department and role"
+        ]
+      },
+      
+      results: {
+        title: "Concept Deliverables", 
+        metrics: [
+          { label: "User Flows", before: "N/A", after: "8 core flows", change: "New" },
+          { label: "UI Components", before: "N/A", after: "50+ components", change: "New" },
+          { label: "Prototypes", before: "N/A", after: "Interactive", change: "New" },
+          { label: "Design System", before: "N/A", after: "Healthcare-focused", change: "New" }
+        ],
+        businessImpact: [
+          "Comprehensive healthcare UX research compilation",
+          "Scalable design system for clinical applications",
+          "HIPAA-compliant interface patterns designed",
+          "Mobile-responsive clinical workflow prototypes",
+          "Ready-to-pitch concept for healthcare startups"
         ]
       },
       
@@ -372,25 +390,24 @@ const PremiumPortfolio = () => {
     {
       title: "Research",
       image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=400&fit=crop",
-      description: "Understanding user needs"
+      description: "Understanding user needs and market dynamics"
     },
     {
       title: "Design",
       image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
-      description: "Creating solutions"
+      description: "Creating intuitive and impactful solutions"
     },
     {
       title: "Test",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-      description: "Validating concepts"
+      description: "Validating concepts with real users"
     },
     {
       title: "Ship",
       image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop",
-      description: "Delivering results"
+      description: "Delivering measurable business results"
     }
   ];
-
   // Case Study Page Component
   const CaseStudyPage = () => {
     if (!selectedCaseStudy) return null;
@@ -918,14 +935,16 @@ const PremiumPortfolio = () => {
                 <ArrowDown className="inline-block w-5 h-5 ml-2" />
               </motion.button>
               
-              <motion.button 
-                className="border border-gray-600 hover:border-gray-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/5 transition-all"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Download Resume
-                <Download className="inline-block w-5 h-5 ml-2" />
-              </motion.button>
+            <motion.a 
+  href="/Naum_resume.pdf"
+  download="Naum_resume.pdf"
+  className="border border-gray-600 hover:border-gray-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/5 transition-all inline-flex items-center"
+  whileHover={{ scale: 1.05, y: -2 }}
+  whileTap={{ scale: 0.95 }}
+>
+  Download Resume
+  <Download className="w-5 h-5 ml-2" />
+</motion.a>
             </motion.div>
 
             {/* Social Proof */}
