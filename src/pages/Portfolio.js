@@ -337,7 +337,7 @@ const PremiumPortfolio = () => {
       
       gallery: [
         "https://i.ibb.co/BSJyb1X/Desktop-1-2.png",
-        "https://i.ibb.co/TMdY3Dts/COLOR-3.png",
+        "https://i.ibb.co/FbFwGR9m/COLOR-5.png",
         "https://i.ibb.co/DHyskq4B/lUME.png",
         "https://i.ibb.co/6RwWnxCJ/COLOR-1.png",
       ]
