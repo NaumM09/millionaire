@@ -128,7 +128,7 @@ const PremiumPortfolio = () => {
       title: "EcoToken - ESG Tokenized Projects Platform",
       subtitle: "Democratizing sustainable investments through blockchain",
       category: "FinTech / Crypto",
-      image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&h=800&fit=crop",
+      image: "https://i.ibb.co/9kr7mnFP/Chat-GPT-Image-Jun-20-2025-04-23-52-PM.png",
       metrics: "300% increase in project funding success",
       color: "from-green-500 to-blue-500",
       duration: "8 months",
@@ -205,9 +205,9 @@ const PremiumPortfolio = () => {
       
       gallery: [
         "https://i.ibb.co/bMrKXk6x/Screenshot-2025-06-18-171837.png",
-        "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+        "https://i.ibb.co/8gSX9T2R/screenmockup-2.png",
+        "https://i.ibb.co/ghd8CGN/mock-up-3.png",
+        "https://i.ibb.co/Mx7MdDQ0/mock-up-1.png",
       ]
     },
     {
@@ -302,7 +302,7 @@ const PremiumPortfolio = () => {
       title: "MediConnect - Clinical Workflow Platform",
       subtitle: "Healthcare UX concept for streamlined clinical workflows",
       category: "Healthcare SaaS (Concept)",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1200&h=800&fit=crop",
+      image: "https://i.ibb.co/cXLxZCdD/Chat-GPT-Image-Jun-20-2025-10-37-01-AM.png",
       metrics: "Design concept study",
       color: "from-blue-600 to-purple-600",
       duration: "Concept exploration",
