@@ -1,27 +1,45 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { 
-  ExternalLink, Github, Mail, Phone, MapPin, Download, Zap, Target, 
-  ArrowRight, Briefcase, ChevronLeft, ChevronRight, Play, Pause, 
-  MousePointer, Palette, Users, Clock, Star, ArrowDown, Brain, ArrowLeft,
-  Calendar, TrendingUp, Award, CheckCircle
+   Download,  
+  ArrowRight,  
+   Palette, Users,  Star, ArrowDown, ArrowLeft,
+   TrendingUp, Award, CheckCircle
 } from 'lucide-react';
 
 const PremiumPortfolio = () => {
+  // eslint-disable-next-line
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
+  const [cursorImages, setCursorImages] = useState([]);
   
   const heroRef = useRef(null);
+  const imageCounter = useRef(0);
   const { scrollYProgress } = useScroll();
   const yBg = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
+  // Array of design-related images for cursor effect
+  const cursorImageUrls = [
+    'https://i.ibb.co/7N6nLcHw/9781847941497-24.jpg',
+    'https://i.ibb.co/mF8tSfxF/51-Hqyc-Cx-MRL-SY580.jpg',
+    'https://i.ibb.co/DfdvGDdx/61-PIpid-STh-L.jpg',
+    'https://i.ibb.co/0ptNGdFs/81gp7-Nk-Ylu-L.jpg',
+    'https://i.ibb.co/0ptNGdFs/81gp7-Nk-Ylu-L.jpg',
+    'https://i.ibb.co/zM4N1Bk/81bsw6fn-Ui-L.jpg',
+    'https://i.ibb.co/Lz83zjPR/81-F90-H7hn-ML.jpg',
+    'https://i.ibb.co/Kkz0VyY/61dfw-V-p-Tz-L.jpg',
+    'https://i.ibb.co/mVSVGS9j/71-Aq-Hmn-Xpp-L.jpg',
+    'https://i.ibb.co/LDKZdD0r/61-U00r-HKM1-L.jpg',
+    'https://i.ibb.co/Zt0NvvR/61-Izr-J6q-Sk-L.jpg'
+  ];
 
   const translations = {
     en: {
       name: "Naum Modiba",
       greeting: "UI/UX DESIGNER",
-      // subtitle: "Creating exceptional user experiences",
+      subtitle: "-and avid reader",
       // tagline: "Design that converts",
       cta: "View Work",
       contact: "Get in touch"
@@ -38,6 +56,33 @@ const PremiumPortfolio = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Cursor image effect handler
+  const handleMouseMove = (e) => {
+    if (!heroRef.current) return;
+    
+    const rect = heroRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Only create images occasionally to avoid overwhelming the screen
+    if (Math.random() > 0.85) {
+      const newImage = {
+        id: imageCounter.current++,
+        x: x - 40, // Center the image on cursor
+        y: y - 40,
+        src: cursorImageUrls[Math.floor(Math.random() * cursorImageUrls.length)],
+        opacity: 1
+      };
+
+      setCursorImages(prev => [...prev, newImage]);
+
+      // Remove image after 2 seconds
+      setTimeout(() => {
+        setCursorImages(prev => prev.filter(img => img.id !== newImage.id));
+      }, 2000);
+    }
+  };
 
   const handleCaseStudyClick = (caseStudy) => {
     setSelectedCaseStudy(caseStudy);
@@ -125,8 +170,8 @@ const PremiumPortfolio = () => {
  const caseStudies = [
     {
       id: 1,
-      title: "EcoToken - ESG Tokenized Projects Platform",
-      subtitle: "Democratizing sustainable investments through blockchain",
+      title: "EcoToken - ESG Tokenised Projects Platform",
+      subtitle: "Democratising sustainable investments through blockchain",
       category: "FinTech / Crypto",
       image: "https://i.ibb.co/9kr7mnFP/Chat-GPT-Image-Jun-20-2025-04-23-52-PM.png",
       metrics: "300% increase in project funding success",
@@ -297,94 +342,7 @@ const PremiumPortfolio = () => {
         "https://i.ibb.co/6RwWnxCJ/COLOR-1.png",
       ]
     },
-    {
-      id: 3,
-      title: "MediConnect - Clinical Workflow Platform",
-      subtitle: "Healthcare UX concept for streamlined clinical workflows",
-      category: "Healthcare SaaS (Concept)",
-      image: "https://i.ibb.co/cXLxZCdD/Chat-GPT-Image-Jun-20-2025-10-37-01-AM.png",
-      metrics: "Design concept study",
-      color: "from-blue-600 to-purple-600",
-      duration: "Concept exploration",
-      role: "UX Designer",
-      team: "Solo concept project",
-      year: "2024",
-      
-      overview: "A conceptual design exploration addressing the complex challenges of healthcare workflow management, focusing on how better UX design could reduce administrative burden and improve patient care.",
-      
-      problem: {
-        title: "The Challenge", 
-        description: "Healthcare providers spend 60% of their time on administrative tasks due to fragmented systems. Multiple legacy platforms create inefficiencies and increase risk of medical errors.",
-        painPoints: [
-          "Patient data scattered across 5+ different systems",
-          "Average 18 minutes per patient for documentation",
-          "No unified communication between care team members",
-          "Manual processes prone to human error",
-          "Compliance reporting extremely time-consuming"
-        ]
-      },
-      
-      research: {
-        title: "Research & Discovery",
-        methods: [
-          "Healthcare industry research and analysis",
-          "Existing healthcare software audit",
-          "Clinical workflow mapping and optimization", 
-          "Regulatory compliance research (HIPAA, etc.)",
-          "Healthcare professional persona development"
-        ],
-        keyFindings: [
-          "Doctors want single sign-on for all tools",
-          "Critical patient info often requires 4+ clicks to access",
-          "Mobile access needed during patient rounds",
-          "Alerts must be contextual to prevent fatigue",
-          "Integration with existing systems is non-negotiable"
-        ]
-      },
-      
-      solution: {
-        title: "Design Solution",
-        approach: [
-          "Unified patient dashboard with role-based views",
-          "Intelligent information hierarchy based on urgency",
-          "Mobile-responsive design for point-of-care access",
-          "Smart notifications with context-aware filtering",
-          "Seamless integration with existing hospital systems"
-        ],
-        keyFeatures: [
-          "360° patient timeline with predictive insights",
-          "Voice-enabled documentation and navigation",
-          "Real-time care team collaboration tools",
-          "Automated compliance reporting dashboard",
-          "Customizable workflows by department and role"
-        ]
-      },
-      
-      results: {
-        title: "Concept Deliverables", 
-        metrics: [
-          { label: "User Flows", before: "N/A", after: "8 core flows", change: "New" },
-          { label: "UI Components", before: "N/A", after: "50+ components", change: "New" },
-          { label: "Prototypes", before: "N/A", after: "Interactive", change: "New" },
-          { label: "Design System", before: "N/A", after: "Healthcare-focused", change: "New" }
-        ],
-        businessImpact: [
-          "Comprehensive healthcare UX research compilation",
-          "Scalable design system for clinical applications",
-          "HIPAA-compliant interface patterns designed",
-          "Mobile-responsive clinical workflow prototypes",
-          "Ready-to-pitch concept for healthcare startups"
-        ]
-      },
-      
-      gallery: [
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=800&h=600&fit=crop"
-      ]
-    }
-  ];
+   ];
 
   const processSteps = [
     {
@@ -852,13 +810,52 @@ const PremiumPortfolio = () => {
         </div>
       </motion.nav>
 
-      {/* Enhanced Hero Section */}
-      <section className="min-h-screen flex items-center relative overflow-hidden">
+      {/* Enhanced Hero Section with Cursor Effect */}
+      <section 
+        ref={heroRef}
+        className="min-h-screen flex items-center relative overflow-hidden"
+        onMouseMove={handleMouseMove}
+      >
         {/* Dynamic Background with Particles */}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"
           style={{ y: yBg }}
         />
+        
+        {/* Cursor Images */}
+        <AnimatePresence>
+          {cursorImages.map((image) => (
+            <motion.img
+              key={image.id}
+              src={image.src}
+              alt="Design element"
+              className="absolute max-w-20 max-h-20 rounded-lg object-contain pointer-events-none z-30"
+              style={{
+                left: `${image.x}px`,
+                top: `${image.y}px`,
+              }}
+              initial={{ 
+                opacity: 0, 
+                scale: 0.3, 
+                rotate: -15 
+              }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                rotate: 0 
+              }}
+              exit={{ 
+                opacity: 0, 
+                scale: 0.8, 
+                rotate: 10 
+              }}
+              transition={{ 
+                duration: 0.4,
+                ease: "easeOut"
+              }}
+            />
+          ))}
+        </AnimatePresence>
         
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -916,8 +913,6 @@ const PremiumPortfolio = () => {
               </span>
             </motion.h1>
             
-            {/* Enhanced Subtitle */}
-            
             {/* Enhanced CTA Buttons */}
             <motion.div 
               className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6"
@@ -935,16 +930,16 @@ const PremiumPortfolio = () => {
                 <ArrowDown className="inline-block w-5 h-5 ml-2" />
               </motion.button>
               
-            <motion.a 
-  href="/Naum_resume.pdf"
-  download="Naum_resume.pdf"
-  className="border border-gray-600 hover:border-gray-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/5 transition-all inline-flex items-center"
-  whileHover={{ scale: 1.05, y: -2 }}
-  whileTap={{ scale: 0.95 }}
->
-  Download Resume
-  <Download className="w-5 h-5 ml-2" />
-</motion.a>
+              <motion.a 
+                href="/Naum_resume.pdf"
+                download="Naum_resume.pdf"
+                className="border border-gray-600 hover:border-gray-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/5 transition-all inline-flex items-center"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Download Resume
+                <Download className="w-5 h-5 ml-2" />
+              </motion.a>
             </motion.div>
 
             {/* Social Proof */}
@@ -955,13 +950,13 @@ const PremiumPortfolio = () => {
               transition={{ duration: 1, delay: 0.8 }}
             >
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">50K+</div>
-                <div className="text-sm text-gray-400">Users Impacted</div>
+                   <div className="text-2xl font-bold text-white">4+</div>
+                <div className="text-sm text-gray-400">Years Experience</div>
               </div>
               <div className="w-px h-12 bg-gray-700"></div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">3+</div>
-                <div className="text-sm text-gray-400">Years Experience</div>
+               <div className="text-2xl font-bold text-white">20+</div>
+                <div className="text-sm text-gray-400">Read Books</div>
               </div>
               <div className="w-px h-12 bg-gray-700"></div>
               <div className="text-center">
@@ -1222,7 +1217,6 @@ const PremiumPortfolio = () => {
             <div className="flex gap-8">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">Email</a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Twitter</a>
             </div>
           </div>
         </div>
