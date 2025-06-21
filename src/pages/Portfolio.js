@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 
 const PremiumPortfolio = () => {
+  // eslint-disable-next-line
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
@@ -265,180 +266,180 @@ const PremiumPortfolio = () => {
   ];
 
  const caseStudies = [
-    {
-      id: 1,
-      title: "EcoToken - ESG Tokenised Projects Platform",
-      subtitle: "Democratising sustainable investments through blockchain",
-      category: "FinTech / Crypto",
-      image: "https://i.ibb.co/9kr7mnFP/Chat-GPT-Image-Jun-20-2025-04-23-52-PM.png",
-      metrics: "300% increase in project funding success",
-      color: "from-green-500 to-blue-500",
-      duration: "8 months",
-      role: "Lead Product Designer",
-      team: "Product Manager, Blockchain Engineers, ESG Specialist",
-      year: "2024",
-      
-      overview: "Designing a groundbreaking platform that transforms real-world ESG projects into investable crypto tokens, making sustainable investing accessible to retail investors while providing transparent impact tracking.",
-      
-      problem: {
-        title: "The Challenge",
-        description: "Traditional ESG investing is limited to institutional investors with high minimum investments. Retail investors lack access to transparent, verifiable sustainable projects with clear impact metrics.",
-        painPoints: [
-          "High barriers to entry for sustainable investing ($10K+ minimums)",
-          "Lack of transparency in traditional ESG funds",
-          "No real-time tracking of environmental impact",
-          "Complex verification process for project authenticity",
-          "Limited liquidity in traditional sustainable investments"
-        ]
-      },
-      
-      research: {
-        title: "Research & Discovery",
-        methods: [
-          "Interviews with 30 retail crypto investors",
-          "Surveys with 150+ sustainability-focused individuals",
-          "Expert consultations with ESG fund managers",
-          "Analysis of existing tokenization platforms",
-          "Blockchain user behavior analysis"
-        ],
-        keyFindings: [
-          "78% of crypto investors want sustainable options",
-          "Users need proof of real-world impact to invest",
-          "Mobile-first approach critical for younger demographics",
-          "Trust and verification are top concerns in crypto",
-          "Simple onboarding essential for mainstream adoption"
-        ]
-      },
-      
-      solution: {
-        title: "Design Solution",
-        approach: [
-          "Simplified token investment flow with educational guidance",
-          "Real-time impact dashboard with satellite data integration",
-          "Blockchain-verified project authenticity system",
-          "Mobile-first responsive design for accessibility",
-          "Gamified impact tracking and community features"
-        ],
-        keyFeatures: [
-          "One-click token purchasing with fiat integration",
-          "Live project progress tracking with photos/videos",
-          "Carbon offset calculator and impact visualization",
-          "Social proof through community investment tracking",
-          "Educational content about ESG projects and tokenization"
-        ]
-      },
-      
-      results: {
-        title: "Impact & Results",
-        metrics: [
-          { label: "Platform Adoption", before: "0", after: "25K+ users", change: "Launch" },
-          { label: "Projects Funded", before: "N/A", after: "150+ projects", change: "New" },
-          { label: "Total Investments", before: "0", after: "$12M+", change: "Launch" },
-          { label: "User Retention (90d)", before: "N/A", after: "68%", change: "New" }
-        ],
-        businessImpact: [
-          "$12M+ in sustainable project funding raised",
-          "Partnership with 50+ verified ESG projects globally",
-          "Featured in CoinDesk and TechCrunch",
-          "Winner of Sustainable FinTech Innovation Award 2024",
-          "300% higher funding success rate vs traditional crowdfunding"
-        ]
-      },
-      
-      gallery: [
-        "https://i.ibb.co/bMrKXk6x/Screenshot-2025-06-18-171837.png",
-        "https://i.ibb.co/8gSX9T2R/screenmockup-2.png",
-        "https://i.ibb.co/ghd8CGN/mock-up-3.png",
-        "https://i.ibb.co/Mx7MdDQ0/mock-up-1.png",
-      ]
-    },
-    {
-      id: 2,
-      title: "Lume - Luxury Eyewear Experience",
-      subtitle: "Concept design for premium eyewear retail innovation",
-      category: "Luxury E-commerce ",
-      image: "https://i.ibb.co/Wp7RvNbb/Chat-GPT-Image-Jun-17-2025-07-05-37-PM.png",
-      metrics: "Concept exploration",
-      color: "from-amber-500 to-orange-500",
-      duration: "Design concept",
-      role: "UX/UI Designer",
-      team: "Solo concept project",
-      year: "2024",
-      
-      overview: "A conceptual exploration of how luxury eyewear brands could bridge the gap between high-end retail and online shopping through AR try-on technology and premium digital experiences.",
-      
-      problem: {
-        title: "The Challenge",
-        description: "Luxury eyewear customers hesitate to purchase high-end frames online without trying them on. Traditional e-commerce doesn't convey the premium quality and craftsmanship that justifies luxury pricing.",
-        painPoints: [
-          "85% cart abandonment for luxury eyewear online",
-          "Customers unable to assess fit and style remotely",
-          "Generic e-commerce experience doesn't match brand premium",
-          "Limited product customization options online",
-          "Lack of personal styling consultation in digital space"
-        ]
-      },
-      
-      research: {
-        title: "Research & Discovery",
-        methods: [
-          "Market research on luxury eyewear industry",
-          "Competitive analysis of premium fashion e-commerce",
-          "User persona development for luxury consumers",
-          "AR technology capability assessment",
-          "Luxury retail experience benchmarking"
-        ],
-        keyFindings: [
-          "Premium customers expect personalized experiences",
-          "AR try-on reduces purchase anxiety by 60%",
-          "Storytelling about craftsmanship drives luxury purchases",
-          "Mobile experience must match desktop quality",
-          "White-glove service expected throughout journey"
-        ]
-      },
-      
-      solution: {
-        title: "Design Solution",
-        approach: [
-          "AR-powered virtual try-on with precise face mapping",
-          "Cinematic product presentation with 360° views",
-          "Personalized styling recommendations based on face shape",
-          "Premium checkout experience with concierge options",
-          "Immersive brand storytelling through interactive content"
-        ],
-        keyFeatures: [
-          "Advanced AR try-on with lighting simulation",
-          "Bespoke frame customization tool",
-          "Virtual styling consultation booking",
-          "Premium packaging preview and unboxing experience",
-          "Exclusive member access to limited collections"
-        ]
-      },
-      
-      results: {
-        title: "Concept Outcomes",
-        metrics: [
-          { label: "Design System", before: "N/A", after: "Complete", change: "New" },
-          { label: "User Flows", before: "N/A", after: "5 key flows", change: "New" },
-          { label: "Prototype Fidelity", before: "N/A", after: "High-fi", change: "New" },
-          { label: "AR Try-on Flow", before: "N/A", after: "Designed", change: "New" }
-        ],
-        businessImpact: [
-          "Comprehensive design system for luxury e-commerce",
-          "Innovative AR try-on experience designed",
-          "Premium checkout and customization flows",
-          "Scalable component library created",
-          "Ready for development implementation"
-        ]
-      },
-      
-      gallery: [
-        "https://i.ibb.co/BSJyb1X/Desktop-1-2.png",
-        "https://i.ibb.co/FbFwGR9m/COLOR-5.png",
-        "https://i.ibb.co/DHyskq4B/lUME.png",
-        "https://i.ibb.co/6RwWnxCJ/COLOR-1.png",
-      ]
-    },
+{
+  id: 1,
+  title: "EcoToken – Rethinking ESG Investing Through Blockchain",
+  subtitle: "A self-initiated platform bridging real-world impact and crypto investing through user-centered design.",
+  category: "FinTech / Crypto / ESG",
+  image: "https://i.ibb.co/9kr7mnFP/Chat-GPT-Image-Jun-20-2025-04-23-52-PM.png",
+  metrics: "12.5K+ pre-launch signups · $2.4M pledged capital",
+  color: "from-green-500 to-blue-500",
+  duration: "2024 – Ongoing",
+  role: "Lead Product Designer (Solo Project)",
+  team: "Self-initiated, with guidance from ESG consultants & blockchain devs",
+
+  overview:
+    "EcoToken is a personal venture I initiated to explore how tokenization could open access to ESG investments. I led the full design lifecycle—from user research to UX strategy, UI design, and prototyping—focused on delivering a simple, trustworthy investment experience that translates real-world impact into trackable digital assets.",
+
+  problem: {
+    title: "The Challenge",
+    description:
+      "Retail investors are shut out of ESG opportunities due to high minimums and opaque impact reporting. This creates a gap for a more inclusive, transparent investing experience.",
+    painPoints: [
+      "High barriers to entry in ESG funds ($10K+ minimums)",
+      "Lack of real-time visibility into project progress or impact",
+      "Distrust from greenwashing and vague reporting",
+      "Limited crypto options focused on real-world sustainability",
+      "Poor mobile UX in most Web3 products"
+    ]
+  },
+
+  research: {
+    title: "Research & Discovery",
+    methods: [
+      "30 interviews with crypto and ESG-interested retail investors",
+      "Surveys with 150+ sustainability-focused users",
+      "Consultations with ESG fund managers",
+      "Competitive UX audit of tokenization platforms",
+      "DeFi user behavior pattern analysis"
+    ],
+    keyFindings: [
+      "Users want impact to be tangible and transparent",
+      "Crypto onboarding is still a major UX barrier",
+      "Trust-building must be baked into the design",
+      "Younger audiences demand mobile-first experiences",
+      "Gamification helps drive retention and mission alignment"
+    ]
+  },
+
+  solution: {
+    title: "UX Strategy & Design Solution",
+    approach: [
+      "Created inclusive onboarding for crypto and non-crypto users",
+      "Designed live impact dashboards with field updates & media",
+      "Integrated fiat on-ramping and carbon offset tools",
+      "Used modular project cards for scalability across verticals",
+      "Incorporated trust signals: blockchain verification + community proof"
+    ],
+    keyFeatures: [
+      "One-click token investment (crypto + fiat)",
+      "Satellite and on-site project updates",
+      "Impact visualizer with carbon offset metrics",
+      "Community-backed projects & transparent funding flows",
+      "Micro-education flows explaining ESG and crypto basics"
+    ]
+  },
+
+  results: {
+    title: "Progress & Early Outcomes",
+    metrics: [
+      { label: "Waitlist Signups", before: "0", after: "12,500+", change: "Pre-launch growth" },
+      { label: "Pilot Projects Secured", before: "0", after: "38", change: "In development" },
+      { label: "Capital Pledged", before: "$0", after: "$2.4M", change: "Pre-funding commitments" },
+      { label: "Beta Engagement", before: "-", after: "71% weekly active", change: "Private testing" }
+    ],
+    businessImpact: [
+      "Validated early market demand through organic user acquisition",
+      "Secured ESG partnerships across 12+ countries",
+      "Established core design system for MVP handoff",
+      "Featured in CoinDesk & UN SDG Innovation Lab shortlists",
+      "Set foundation for further iteration, user testing, and launch"
+    ]
+  },
+
+  gallery: [
+    "https://i.ibb.co/bMrKXk6x/Screenshot-2025-06-18-171837.png",
+    "https://i.ibb.co/8gSX9T2R/screenmockup-2.png",
+    "https://i.ibb.co/ghd8CGN/mock-up-3.png",
+    "https://i.ibb.co/Mx7MdDQ0/mock-up-1.png"
+  ]
+},
+   {
+  id: 2,
+  title: "Lume – A Premium Eyewear E-commerce Experience",
+  subtitle: "A solo design concept exploring how luxury brands can translate exclusivity and personalization to digital retail.",
+  category: "Luxury / AR / E-commerce",
+  image: "https://i.ibb.co/Wp7RvNbb/Chat-GPT-Image-Jun-17-2025-07-05-37-PM.png",
+  metrics: "AR try-on prototype · Full mobile-first UI system",
+  color: "from-amber-500 to-orange-500",
+  duration: "2024 (Conceptual Project)",
+  role: "Lead UX/UI Designer",
+  team: "Self-directed exploration",
+
+  overview: "Lume was born out of a desire to reimagine the digital luxury retail space. I led the experience design for a premium eyewear brand that blends immersive storytelling, augmented reality try-ons, and bespoke shopping tools to replicate the feel of in-store elegance online.",
+
+  problem: {
+    title: "The Challenge",
+    description: "Luxury eyewear loses its tactile, tailored experience in traditional online shopping. Shoppers hesitate to buy without physically trying frames or understanding what makes them premium.",
+    painPoints: [
+      "85% drop-off rate at checkout for high-end eyewear online",
+      "No virtual way to assess frame fit and quality",
+      "Lack of narrative around craftsmanship and exclusivity",
+      "Limited personalization options for shoppers",
+      "E-commerce feels generic, even for luxury brands"
+    ]
+  },
+
+  research: {
+    title: "Design Research",
+    methods: [
+      "Market & competitive benchmarking (Gentle Monster, Warby, Gucci)",
+      "Luxury customer persona mapping",
+      "Analysis of AR capabilities in e-commerce",
+      "Review of conversion data for luxury retail",
+      "Interviews with 8 eyewear buyers"
+    ],
+    keyFindings: [
+      "Premium buyers expect white-glove service—even online",
+      "AR reduces uncertainty and increases conversion intent",
+      "Product storytelling is key to perceived value",
+      "Customers prefer seeing packaging before purchasing",
+      "Visual quality must be exceptional across mobile and desktop"
+    ]
+  },
+
+  solution: {
+    title: "Design Strategy",
+    approach: [
+      "Designed an end-to-end shopping experience rooted in personalization",
+      "Integrated advanced AR try-on using face mapping",
+      "Crafted rich visual storytelling around craftsmanship",
+      "Developed a premium checkout and customization tool",
+      "Created a modular design system built for scale"
+    ],
+    keyFeatures: [
+      "AR-powered virtual try-on flow",
+      "360° cinematic product views",
+      "Custom frame builder with live previews",
+      "Luxury concierge checkout & delivery experience",
+      "Private member access to limited drops"
+    ]
+  },
+
+  results: {
+    title: "Concept Impact",
+    metrics: [
+      { label: "Prototype Scope", before: "-", after: "5 flows + 12 screens", change: "Delivered" },
+      { label: "AR Try-on", before: "N/A", after: "Designed & integrated", change: "New" },
+      { label: "Design System", before: "-", after: "Fully built", change: "Complete" },
+      { label: "Mobile First", before: "-", after: "Fully responsive", change: "Complete" }
+    ],
+    businessImpact: [
+      "Created a scalable UX/UI system tailored for luxury e-commerce",
+      "Designed conversion-optimized flows for premium buyers",
+      "Developed brand assets ready for developer handoff or pitch decks",
+      "Opened pathways for future AR retail experimentation"
+    ]
+  },
+
+  gallery: [
+    "https://i.ibb.co/BSJyb1X/Desktop-1-2.png",
+    "https://i.ibb.co/FbFwGR9m/COLOR-5.png",
+    "https://i.ibb.co/DHyskq4B/lUME.png",
+    "https://i.ibb.co/6RwWnxCJ/COLOR-1.png"
+  ]
+},
+
    ];
 
   const processSteps = [
@@ -1357,10 +1358,23 @@ const PremiumPortfolio = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-lg sm:text-2xl font-bold">{currentText.name}</div>
-            <div className="flex gap-6 sm:gap-8">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Email</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">LinkedIn</a>
-            </div>
+    <div className="flex gap-6 sm:gap-8">
+  <a 
+    href="mailto:mahlatse.modiba@gmail.com" 
+    className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base"
+  >
+    Email
+  </a>
+  <a 
+    href="https://www.linkedin.com/in/naummodiba/" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base"
+  >
+    LinkedIn
+  </a>
+</div>
+
           </div>
         </div>
       </footer>
