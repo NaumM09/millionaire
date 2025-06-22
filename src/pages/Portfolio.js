@@ -39,7 +39,8 @@ const PremiumPortfolio = () => {
     'https://i.ibb.co/mF8tSfxF/51-Hqyc-Cx-MRL-SY580.jpg',
     'https://i.ibb.co/DfdvGDdx/61-PIpid-STh-L.jpg',
     'https://i.ibb.co/0ptNGdFs/81gp7-Nk-Ylu-L.jpg',
-    'https://i.ibb.co/0ptNGdFs/81gp7-Nk-Ylu-L.jpg',
+    'https://i.ibb.co/6RCbcpMC/71-Z9z-Jn-T4v-L.jpg',
+    'https://i.ibb.co/PsSgtXqx/9780141988498.jpg',
     'https://i.ibb.co/zM4N1Bk/81bsw6fn-Ui-L.jpg',
     'https://i.ibb.co/Lz83zjPR/81-F90-H7hn-ML.jpg',
     'https://i.ibb.co/Kkz0VyY/61dfw-V-p-Tz-L.jpg',
@@ -69,7 +70,7 @@ const PremiumPortfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Cursor image effect handler (disabled on mobile)
+ // Cursor image effect handler (disabled on mobile)
   const handleMouseMove = (e) => {
     if (!heroRef.current || isMobile) return;
     
@@ -77,7 +78,20 @@ const PremiumPortfolio = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
-    if (Math.random() > 0.85) {
+    // Check if cursor is over a button or interactive element
+    const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+    const isOverButton = elementUnderCursor?.closest('button, a') !== null;
+    
+    // Also check if we're in the button area (roughly center-bottom of hero)
+    const heroHeight = rect.height;
+    const heroWidth = rect.width;
+    const buttonAreaTop = heroHeight * 0.6; // Buttons are roughly in bottom 40% of hero
+    const buttonAreaLeft = heroWidth * 0.1; // Give some margin on sides
+    const buttonAreaRight = heroWidth * 0.9;
+    const isInButtonArea = y > buttonAreaTop && x > buttonAreaLeft && x < buttonAreaRight;
+    
+    // Only create images if not over buttons and random chance
+    if (!isOverButton && !isInButtonArea && Math.random() > 0.85) {
       const newImage = {
         id: imageCounter.current++,
         x: x - 40,
