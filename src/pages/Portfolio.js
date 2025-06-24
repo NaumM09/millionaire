@@ -1474,8 +1474,8 @@ const PremiumPortfolio = () => {
             </div>
             <span className="text-cyan-400 text-sm font-medium">Canva</span>
           </div>
-          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Event Poster Design</h3>
-          <p className="text-gray-300 text-xs sm:text-sm">Conference marketing material</p>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Adidas</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Ad poster for New Sambas</p>
         </div>
       </motion.div> 
 
