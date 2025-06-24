@@ -1462,7 +1462,7 @@ const PremiumPortfolio = () => {
         whileHover={{ scale: isMobile ? 1 : 1.02 }}
       >
         <img 
-          src="https://i.ibb.co/TDhLh9sC/Adidas-photo-frame.png"
+          src="https://i.ibb.co/35BLLDR6/Adidas-photo-frame-1.png"
           alt="Event Poster"
           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
         />
