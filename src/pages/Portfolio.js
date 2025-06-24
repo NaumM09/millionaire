@@ -1452,7 +1452,7 @@ const PremiumPortfolio = () => {
           <p className="text-gray-300 text-xs sm:text-sm">Instagram post designs</p>
         </div>
       </motion.div>
-{/* 
+ 
       <motion.div
         className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
         initial={{ opacity: 0, y: 30 }}
@@ -1462,7 +1462,7 @@ const PremiumPortfolio = () => {
         whileHover={{ scale: isMobile ? 1 : 1.02 }}
       >
         <img 
-          src="https://i.ibb.co/t9wjb1h/momentum-5.png"
+          src="https://i.ibb.co/TDhLh9sC/Adidas-photo-frame.png"
           alt="Event Poster"
           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
         />
@@ -1477,7 +1477,7 @@ const PremiumPortfolio = () => {
           <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Event Poster Design</h3>
           <p className="text-gray-300 text-xs sm:text-sm">Conference marketing material</p>
         </div>
-      </motion.div> */}
+      </motion.div> 
 
       <motion.div
         className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
