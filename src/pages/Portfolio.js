@@ -282,82 +282,82 @@ const PremiumPortfolio = () => {
  const caseStudies = [
 {
   id: 1,
-  title: "EcoToken – Rethinking ESG Investing Through Blockchain",
-  subtitle: "A self-initiated platform bridging real-world impact and crypto investing through user-centered design.",
-  category: "FinTech / Crypto / ESG",
+  title: "EcoToken – Ethical Crypto Investing Concept",
+  subtitle: "A passion project exploring alternatives to memecoin culture through conscious investment design.",
+  category: "FinTech / Crypto / ESG Concept",
   image: "https://i.ibb.co/9kr7mnFP/Chat-GPT-Image-Jun-20-2025-04-23-52-PM.png",
-  metrics: "12.5K+ pre-launch signups · $2.4M pledged capital",
+  metrics: "Design exploration · Behavioral UX research",
   color: "from-green-500 to-blue-500",
-  duration: "2024 – Ongoing",
-  role: "Lead Product Designer (Solo Project)",
-  team: "Self-initiated, with guidance from ESG consultants & blockchain devs",
+  duration: "2024 – Concept Development",
+  role: "Product Designer & Researcher",
+  team: "Self-initiated passion project",
 
   overview:
-    "EcoToken is a personal venture I initiated to explore how tokenization could open access to ESG investments. I led the full design lifecycle—from user research to UX strategy, UI design, and prototyping—focused on delivering a simple, trustworthy investment experience that translates real-world impact into trackable digital assets.",
+    "EcoToken emerged from my experience trading memecoins and witnessing their psychological impact on investors. After seeing people chase quick gains in projects with no real utility or vetting, I wanted to explore what crypto investing could look like if it prioritized ethical impact and mental well-being over speculation.",
 
   problem: {
-    title: "The Challenge",
+    title: "The Problem I Observed",
     description:
-      "Retail investors are shut out of ESG opportunities due to high minimums and opaque impact reporting. This creates a gap for a more inclusive, transparent investing experience.",
+      "Through my own trading experience and conversations with other investors, I identified concerning patterns in memecoin culture that needed addressing.",
     painPoints: [
-      "High barriers to entry in ESG funds ($10K+ minimums)",
-      "Lack of real-time visibility into project progress or impact",
-      "Distrust from greenwashing and vague reporting",
-      "Limited crypto options focused on real-world sustainability",
-      "Poor mobile UX in most Web3 products"
+      "Mental health toll from volatile, speculative trading",
+      "Lack of project vetting or real-world utility",
+      "Crypto's potential for positive impact overshadowed by pump-and-dump culture",
+      "Limited ethical investment options for conscious crypto investors",
+      "UX patterns that encourage addictive trading behaviors"
     ]
   },
 
   research: {
-    title: "Research & Discovery",
+    title: "Research & Insights",
     methods: [
-      "30 interviews with crypto and ESG-interested retail investors",
-      "Surveys with 150+ sustainability-focused users",
-      "Consultations with ESG fund managers",
-      "Competitive UX audit of tokenization platforms",
-      "DeFi user behavior pattern analysis"
+      "Personal trading experience analysis",
+      "Interviews with 15+ crypto investors about their experiences",
+      "Competitive analysis of existing ESG and crypto platforms",
+      "Exploration of behavioral design patterns in fintech",
+      "Analysis of mental health impacts in crypto trading"
     ],
     keyFindings: [
-      "Users want impact to be tangible and transparent",
-      "Crypto onboarding is still a major UX barrier",
-      "Trust-building must be baked into the design",
-      "Younger audiences demand mobile-first experiences",
-      "Gamification helps drive retention and mission alignment"
+      "Many traders want more meaningful investment options",
+      "Current crypto UX often encourages impulsive decision-making",
+      "There's appetite for projects combining crypto innovation with real-world impact",
+      "Trust and transparency are major barriers in crypto",
+      "Need for design that promotes long-term thinking over day trading"
     ]
   },
 
   solution: {
-    title: "UX Strategy & Design Solution",
+    title: "Design Exploration",
     approach: [
-      "Created inclusive onboarding for crypto and non-crypto users",
-      "Designed live impact dashboards with field updates & media",
-      "Integrated fiat on-ramping and carbon offset tools",
-      "Used modular project cards for scalability across verticals",
-      "Incorporated trust signals: blockchain verification + community proof"
+      "Designed frameworks for ethical crypto UX",
+      "Created mockups demonstrating alternative investment approaches",
+      "Explored behavioral design patterns for healthier trading habits",
+      "Developed project vetting frameworks and impact visualization concepts",
+      "Built design system focused on mindful, impact-driven investing"
     ],
     keyFeatures: [
-      "One-click token investment (crypto + fiat)",
-      "Satellite and on-site project updates",
-      "Impact visualizer with carbon offset metrics",
-      "Community-backed projects & transparent funding flows",
-      "Micro-education flows explaining ESG and crypto basics"
+      "Project transparency dashboards with real impact metrics",
+      "Cooling-off periods and mindful investment prompts",
+      "Community-driven project vetting processes",
+      "Educational content about sustainable investing",
+      "Mobile-first design focused on long-term thinking"
     ]
   },
 
   results: {
-    title: "Progress & Early Outcomes",
+    title: "Concept Outcomes",
     metrics: [
-      { label: "Waitlist Signups", before: "0", after: "12,500+", change: "Pre-launch growth" },
-      { label: "Pilot Projects Secured", before: "0", after: "38", change: "In development" },
-      { label: "Capital Pledged", before: "$0", after: "$2.4M", change: "Pre-funding commitments" },
-      { label: "Beta Engagement", before: "-", after: "71% weekly active", change: "Private testing" }
+      { label: "Design Artifacts", before: "0", after: "Complete UI system", change: "Created" },
+      { label: "User Journey Maps", before: "-", after: "5 key flows", change: "Mapped" },
+      { label: "Research Insights", before: "-", after: "15+ interviews", change: "Documented" },
+      { label: "Design Patterns", before: "-", after: "Behavioral framework", change: "Developed" }
     ],
     businessImpact: [
-      "Validated early market demand through organic user acquisition",
-      "Secured ESG partnerships across 12+ countries",
-      "Established core design system for MVP handoff",
-      "Featured in CoinDesk & UN SDG Innovation Lab shortlists",
-      "Set foundation for further iteration, user testing, and launch"
+      "Developed frameworks for ethical crypto UX design",
+      "Created user-centered approach to conscious investing platforms",
+      "Built design system demonstrating alternative to speculative trading UX",
+      "Documented research on intersection of behavioral design and crypto culture",
+      "Demonstrated commitment to designing technology that serves well-being"
     ]
   },
 
@@ -1108,7 +1108,7 @@ const PremiumPortfolio = () => {
               transition={{ duration: 1, delay: 0.8 }}
             >
               <div className="text-center">
-                <div className="text-xl sm:text-2xl font-bold text-white">4+</div>
+                <div className="text-xl sm:text-2xl font-bold text-white">3+</div>
                 <div className="text-xs sm:text-sm text-gray-400">Years Experience</div>
               </div>
               <div className="w-px h-8 sm:h-12 bg-gray-700"></div>
@@ -1299,6 +1299,240 @@ const PremiumPortfolio = () => {
           </div>
         </div>
       </section>
+
+   {/* Design Showcase Section */}
+<section id="showcase" className="py-16 sm:py-32 bg-gray-950">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div 
+      className="text-center mb-12 sm:mb-20"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+        Design Gallery
+      </h2>
+      <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
+        A collection of my creative work across Figma, Photoshop, and Canva
+      </p>
+    </motion.div>
+
+    {/* Masonry-style Grid */}
+    <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6">
+      {/* Figma Designs */}
+      <motion.div
+        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      >
+        <img 
+          src="https://i.ibb.co/wZ6NKqwj/Desktop-1-7.png"
+          alt="Mobile Banking App UI"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-purple-500 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">F</span>
+            </div>
+            <span className="text-purple-400 text-sm font-medium">Figma</span>
+          </div>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Mobile Banking App</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Complete UI/UX design system</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      >
+        <img 
+          src="https://i.ibb.co/kRMBBfm/Desktop-1-8.png"
+          alt="Analytics Dashboard"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-purple-500 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">F</span>
+            </div>
+            <span className="text-purple-400 text-sm font-medium">Figma</span>
+          </div>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Analytics Dashboard</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Data visualization interface</p>
+        </div>
+      </motion.div>
+
+      {/* Photoshop Designs */}
+      <motion.div
+        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=500&fit=crop"
+          alt="Brand Identity"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">Ps</span>
+            </div>
+            <span className="text-blue-400 text-sm font-medium">Photoshop</span>
+          </div>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Brand Identity Suite</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Logo and visual identity design</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=350&fit=crop"
+          alt="Web Design Mockup"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">Ps</span>
+            </div>
+            <span className="text-blue-400 text-sm font-medium">Photoshop</span>
+          </div>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">E-commerce Website</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Product showcase design</p>
+        </div>
+      </motion.div>
+
+      {/* Canva Designs */}
+      <motion.div
+        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      >
+        <img 
+          src="https://i.ibb.co/QjfXShqk/Thirteen-1.png"
+          alt="Social Media Design"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-600 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">C</span>
+            </div>
+            <span className="text-cyan-400 text-sm font-medium">Canva</span>
+          </div>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Social Media Campaign</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Instagram post designs</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      >
+        <img 
+          src="https://i.ibb.co/t9wjb1h/momentum-5.png"
+          alt="Event Poster"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-600 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">C</span>
+            </div>
+            <span className="text-cyan-400 text-sm font-medium">Canva</span>
+          </div>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Event Poster Design</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Conference marketing material</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      >
+        <img 
+          src="https://i.ibb.co/Hp4wQ7K4/Dischem-3.png"
+          alt="UI Component Library"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-purple-500 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">F</span>
+            </div>
+            <span className="text-purple-400 text-sm font-medium">Figma</span>
+          </div>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">UI Component Library</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Design system components</p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: isMobile ? 1 : 1.02 }}
+      >
+        <img 
+          src="https://i.ibb.co/Y7V7G0h5/toyota.png"
+          alt="Business Card Design"
+          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">Ps</span>
+            </div>
+            <span className="text-blue-400 text-sm font-medium">Photoshop</span>
+          </div>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Business Card Design</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Corporate identity materials</p>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* Process Section */}
       <section id="process" className="py-16 sm:py-32 bg-gray-950">
