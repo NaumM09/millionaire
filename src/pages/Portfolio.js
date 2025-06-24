@@ -1342,8 +1342,8 @@ const PremiumPortfolio = () => {
             </div>
             <span className="text-purple-400 text-sm font-medium">Figma</span>
           </div>
-          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Mobile Banking App</h3>
-          <p className="text-gray-300 text-xs sm:text-sm">Complete UI/UX design system</p>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Capitec Bank</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Campaign Mock Screens</p>
         </div>
       </motion.div>
 
@@ -1368,8 +1368,8 @@ const PremiumPortfolio = () => {
             </div>
             <span className="text-purple-400 text-sm font-medium">Figma</span>
           </div>
-          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Analytics Dashboard</h3>
-          <p className="text-gray-300 text-xs sm:text-sm">Data visualization interface</p>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">First National Bank</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Campaign Mock Screens</p>
         </div>
       </motion.div>
 
@@ -1383,20 +1383,20 @@ const PremiumPortfolio = () => {
         whileHover={{ scale: isMobile ? 1 : 1.02 }}
       >
         <img 
-          src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=500&fit=crop"
+          src="https://i.ibb.co/t9wjb1h/momentum-5.png"
           alt="Brand Identity"
           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">Ps</span>
+            <div className="w-6 h-6 bg-purple-500 rounded flex items-center justify-center">
+              <span className="text-white text-xs font-bold">F</span>
             </div>
-            <span className="text-blue-400 text-sm font-medium">Photoshop</span>
+            <span className="text-purple-400 text-sm font-medium">Figma</span>
           </div>
-          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Brand Identity Suite</h3>
-          <p className="text-gray-300 text-xs sm:text-sm">Logo and visual identity design</p>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Momentum</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Product Design</p>
         </div>
       </motion.div>
 
@@ -1409,7 +1409,7 @@ const PremiumPortfolio = () => {
         whileHover={{ scale: isMobile ? 1 : 1.02 }}
       >
         <img 
-          src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=350&fit=crop"
+                  src="https://i.ibb.co/Hp4wQ7K4/Dischem-3.png"
           alt="Web Design Mockup"
           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
         />
@@ -1476,32 +1476,6 @@ const PremiumPortfolio = () => {
           </div>
           <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Event Poster Design</h3>
           <p className="text-gray-300 text-xs sm:text-sm">Conference marketing material</p>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.7 }}
-        viewport={{ once: true }}
-        whileHover={{ scale: isMobile ? 1 : 1.02 }}
-      >
-        <img 
-          src="https://i.ibb.co/Hp4wQ7K4/Dischem-3.png"
-          alt="UI Component Library"
-          className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-6 h-6 bg-purple-500 rounded flex items-center justify-center">
-              <span className="text-white text-xs font-bold">F</span>
-            </div>
-            <span className="text-purple-400 text-sm font-medium">Figma</span>
-          </div>
-          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">UI Component Library</h3>
-          <p className="text-gray-300 text-xs sm:text-sm">Design system components</p>
         </div>
       </motion.div>
 
