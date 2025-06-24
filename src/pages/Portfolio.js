@@ -1462,7 +1462,7 @@ const PremiumPortfolio = () => {
         whileHover={{ scale: isMobile ? 1 : 1.02 }}
       >
         <img 
-          src="https://i.ibb.co/35BLLDR6/Adidas-photo-frame-1.png"
+          src="https://i.ibb.co/7MTt4PG/Adidas-photo-frame-4.png"
           alt="Event Poster"
           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
         />
@@ -1478,6 +1478,8 @@ const PremiumPortfolio = () => {
           <p className="text-gray-300 text-xs sm:text-sm">Ad poster for New Sambas</p>
         </div>
       </motion.div> 
+
+
 
       <motion.div
         className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
