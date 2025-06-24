@@ -1452,7 +1452,7 @@ const PremiumPortfolio = () => {
           <p className="text-gray-300 text-xs sm:text-sm">Instagram post designs</p>
         </div>
       </motion.div>
-
+{/* 
       <motion.div
         className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
         initial={{ opacity: 0, y: 30 }}
@@ -1477,7 +1477,7 @@ const PremiumPortfolio = () => {
           <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Event Poster Design</h3>
           <p className="text-gray-300 text-xs sm:text-sm">Conference marketing material</p>
         </div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
