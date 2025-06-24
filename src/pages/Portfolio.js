@@ -1500,8 +1500,8 @@ const PremiumPortfolio = () => {
             </div>
             <span className="text-blue-400 text-sm font-medium">Photoshop</span>
           </div>
-          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Business Card Design</h3>
-          <p className="text-gray-300 text-xs sm:text-sm">Corporate identity materials</p>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Toyota</h3>
+          <p className="text-gray-300 text-xs sm:text-sm">Urban Cruiser Identity</p>
         </div>
       </motion.div>
     </div>
