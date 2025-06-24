@@ -1421,7 +1421,7 @@ const PremiumPortfolio = () => {
             </div>
             <span className="text-blue-400 text-sm font-medium">Photoshop</span>
           </div>
-          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">E-commerce Website</h3>
+          <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Dischem</h3>
           <p className="text-gray-300 text-xs sm:text-sm">Product showcase design</p>
         </div>
       </motion.div>
