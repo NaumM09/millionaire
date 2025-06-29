@@ -1172,7 +1172,7 @@ const PremiumPortfolio = () => {
                   <div className="text-white text-xs sm:text-sm font-medium">50K+ Users</div>
                 </div>
               </motion.div>
-
+{/* 
               <motion.div 
                 className="absolute bottom-3 right-3 sm:bottom-6 lg:bottom-8 sm:right-6 lg:right-8 bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-white/20 shadow-xl"
                 animate={{ y: [0, 8, 0] }}
@@ -1182,7 +1182,7 @@ const PremiumPortfolio = () => {
                   <TrendingUp className="w-3 h-3 sm:w-5 sm:h-5 text-green-400" />
                   <div className="text-white text-xs sm:text-sm font-medium">65% Increase</div>
                 </div>
-              </motion.div>
+              </motion.div> */}
             </div>
 
             {/* Glow Effect */}
@@ -1427,7 +1427,7 @@ const PremiumPortfolio = () => {
       </motion.div>
 
       {/* Canva Designs */}
-      <motion.div
+      {/* <motion.div
         className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -1451,7 +1451,7 @@ const PremiumPortfolio = () => {
           <h3 className="text-white font-semibold text-sm sm:text-base mb-1">Social Media Campaign</h3>
           <p className="text-gray-300 text-xs sm:text-sm">Instagram post designs</p>
         </div>
-      </motion.div>
+      </motion.div> */}
  
       <motion.div
         className="group relative break-inside-avoid rounded-xl sm:rounded-2xl overflow-hidden bg-gray-800"
