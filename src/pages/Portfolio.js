@@ -1133,7 +1133,7 @@ const PremiumPortfolio = () => {
           >
             <div className="aspect-[16/9] bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-700/50 shadow-2xl relative">
               <img 
-                src="https://i.ibb.co/J8pSdKz/Untitled-4.png"
+                src="https://i.ibb.co/xS0T4RnN/Untitled-5.png"
                 alt="Design showcase"
                 className="w-full h-full object-cover"
               />
