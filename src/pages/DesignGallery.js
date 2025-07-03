@@ -62,6 +62,12 @@ const projects = [
     image: "https://i.ibb.co/TBZxyP5f/Mac-Book-Air-1-3.png",
     company: "Absa",
     tools: ['figma']
+  },
+   {
+    id: 8,
+    image: "https://i.ibb.co/nNpR5TTd/Mac-Book-Air-2.png",
+    company: "Absa",
+    tools: ['figma']
   }
 ];
 
