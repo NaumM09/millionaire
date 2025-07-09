@@ -47,7 +47,7 @@ const projects = [
   },
   {
     id: 5,
-    image: "https://i.ibb.co/Hp4wQ7K4/Dischem-3.png",
+    image: "https://i.ibb.co/zVDscFCm/dischem.png",
     company: "Dischem",
     tools: ['GIMP', 'canva']
   },
