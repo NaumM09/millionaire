@@ -1,926 +1,864 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, User, Target, Palette, ArrowRight, ArrowLeft, Search, Eye, Layers, Play, Pause } from 'lucide-react';
-import "./PortfolioPage.css";
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Palette, 
+  Users, 
+  Target,  
+  Lightbulb,
+  ArrowRight,
+  Globe,
+  X,
+  ExternalLink,
+  Eye
+} from 'lucide-react';
 
-const PortfolioPage = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [activeSection, setActiveSection] = useState('overview');
-  const [journeyStep, setJourneyStep] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(false);
+// Design System Constants
+const DESIGN_TOKENS = {
+  typography: {
+    scale: {
+      xs: 'text-xs',
+      sm: 'text-sm',
+      base: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl'
+    }
+  },
+  spacing: {
+    xs: 'p-2',
+    sm: 'p-3',
+    md: 'p-4',
+    lg: 'p-6',
+    xl: 'p-8'
+  },
+  colors: {
+    primary: 'bg-blue-600 hover:bg-blue-700',
+    secondary: 'bg-gray-700 hover:bg-gray-600',
+    accent: 'bg-white text-black hover:bg-gray-100'
+  },
+  animations: {
+    fast: { duration: 0.2 },
+    normal: { duration: 0.3 },
+    slow: { duration: 0.5 }
+  }
+};
 
-  const projects = [
-    {
-      id: 1,
-      title: "PetGo",
-      subtitle: "Trust-First Pet Transportation",
-      category: "Mobile App • B2C",
-      overview: "Redesigning anxiety into confidence",
-      role: "Lead UX/UI Designer",
-      timeline: "16 weeks",
-      heroImage: "/api/placeholder/800/500",
-      
-      brief: {
-        problem: "Pet owners experience extreme anxiety due to lack of transparency",
-        solution: "Trust-building experience with verified drivers and real-time updates",
-        challenge: "How might we transform anxiety into confidence?"
-      },
+// Project Data
+const projectsData = [
+  {
+    id: 'ecotoken',
+    name: 'EcoToken',
+    type: 'FinTech / Crypto / ESG Concept',
+    tools: ['Figma', 'React', 'Tailwind CSS'],
+    role: 'Product Designer & Researcher + Frontend Developer',
+    brief: 'A passion project exploring alternatives to memecoin culture through conscious investment design, focusing on ethical crypto investing and mental well-being.',
+    heroImage: 'https://i.ibb.co/9kr7mnFP/Chat-GPT-Image-Jun-20-2025-04-23-52-PM.png',
+    projectUrl: 'https://www.figma.com/design/your-ecotoken-project',
+    
+    problem: {
+      description: 'Through my own trading experience and conversations with other investors, I identified concerning patterns in memecoin culture that needed addressing.',
+      businessGoal: 'Create a platform that prioritizes ethical impact and mental well-being over speculation in crypto investing.',
+      context: 'Self-initiated passion project after experiencing the psychological toll of memecoin trading firsthand.'
+    },
 
-      research: {
-        visual: "/api/placeholder/800/400",
-        methods: [
-          { icon: "👥", method: "User Interviews", count: "12 pet owners" },
-          { icon: "📊", method: "Survey Research", count: "156 responses" },
-          { icon: "🔍", method: "Competitive Analysis", count: "5 apps analyzed" },
-          { icon: "🗺️", method: "Journey Mapping", count: "8 sessions" }
-        ],
-        insights: [
-          "87% prioritize safety over cost",
-          "Trust signals matter more than features",
-          "Real-time updates reduce anxiety by 73%"
-        ]
-      },
+    goals: [
+      'Design frameworks for ethical crypto UX that promotes long-term thinking',
+      'Create user-centered approach to conscious investing platforms',
+      'Develop behavioral design patterns for healthier trading habits',
+      'Demonstrate how crypto can serve positive impact and well-being'
+    ],
 
-      persona: {
-        name: "Sarah Chen",
-        image: "/api/placeholder/200/200",
-        role: "Marketing Manager",
-        age: 32,
-        painPoints: ["Previous bad experience", "Can't assess driver trust", "No visibility during transport"],
-        goals: ["Find trustworthy transport", "Get real-time updates", "Fair pricing"],
-        quote: "I need to know my dog is safe every step of the way"
-      },
-
-      userJourney: {
-        steps: [
-          {
-            phase: "Awareness",
-            emotion: "Anxious",
-            touchpoint: "App Store Search",
-            action: "Searches 'pet transport'",
-            painPoint: "Skeptical from past experience",
-            visual: "/api/placeholder/300/200",
-            solution: "Trust badges visible in listing"
-          },
-          {
-            phase: "Onboarding",
-            emotion: "Cautious",
-            touchpoint: "Welcome Screen",
-            action: "Downloads and opens app",
-            painPoint: "Worried about reliability",
-            visual: "/api/placeholder/300/200",
-            solution: "Verification process explained upfront"
-          },
-          {
-            phase: "Discovery",
-            emotion: "Hopeful",
-            touchpoint: "Driver Profiles",
-            action: "Browses available drivers",
-            painPoint: "Hard to assess trustworthiness",
-            visual: "/api/placeholder/300/200",
-            solution: "Pet-specific ratings and photos"
-          },
-          {
-            phase: "Booking",
-            emotion: "Nervous",
-            touchpoint: "Booking Flow",
-            action: "Enters trip details",
-            painPoint: "Unclear pricing",
-            visual: "/api/placeholder/300/200",
-            solution: "Instant transparent pricing"
-          },
-          {
-            phase: "Waiting",
-            emotion: "Anxious",
-            touchpoint: "Driver Arrival",
-            action: "Waits for driver pickup",
-            painPoint: "No communication",
-            visual: "/api/placeholder/300/200",
-            solution: "Live tracking and ETA updates"
-          },
-          {
-            phase: "Journey",
-            emotion: "Relieved",
-            touchpoint: "Live Tracking",
-            action: "Monitors pet's journey",
-            painPoint: "No visibility into pet wellbeing",
-            visual: "/api/placeholder/300/200",
-            solution: "Photo updates and GPS tracking"
-          },
-          {
-            phase: "Completion",
-            emotion: "Satisfied",
-            touchpoint: "Delivery",
-            action: "Pet arrives safely",
-            painPoint: "No confirmation",
-            visual: "/api/placeholder/300/200",
-            solution: "Photo confirmation and rating"
-          }
-        ]
-      },
-
-      designProcess: [
+    research: {
+      competitiveAnalysis: [
         {
-          phase: "Research",
-          visual: "/api/placeholder/400/300",
-          methods: ["Interviews", "Surveys", "Analysis"],
-          outcome: "Trust framework defined"
+          competitor: 'Traditional Crypto Exchanges',
+          strengths: 'High liquidity, established user base',
+          weaknesses: 'Encourage day trading, lack ethical focus',
+          gaps: 'No consideration for mental health or project vetting'
         },
         {
-          phase: "Define",
-          visual: "/api/placeholder/400/300",
-          methods: ["Personas", "Journey Maps", "Principles"],
-          outcome: "Problem statement refined"
+          competitor: 'ESG Investment Platforms',
+          strengths: 'Focus on ethical investing, transparency',
+          weaknesses: 'Limited crypto exposure, traditional finance focus',
+          gaps: 'No integration with blockchain innovation'
         },
         {
-          phase: "Ideate",
-          visual: "/api/placeholder/400/300",
-          methods: ["Sketching", "Concepts", "Validation"],
-          outcome: "3 concepts tested"
-        },
-        {
-          phase: "Design",
-          visual: "/api/placeholder/400/300",
-          methods: ["Wireframes", "Prototypes", "System"],
-          outcome: "High-fidelity designs"
-        },
-        {
-          phase: "Test",
-          visual: "/api/placeholder/400/300",
-          methods: ["Usability", "A/B Testing", "Iteration"],
-          outcome: "Validated solution"
+          competitor: 'DeFi Platforms',
+          strengths: 'Innovation, decentralization',
+          weaknesses: 'Complex UX, speculation-focused',
+          gaps: 'No ethical screening or impact measurement'
         }
-      ],
-
-      wireframes: [
-        { name: "Onboarding", image: "/api/placeholder/200/300" },
-        { name: "Driver Selection", image: "/api/placeholder/200/300" },
-        { name: "Booking", image: "/api/placeholder/200/300" },
-        { name: "Tracking", image: "/api/placeholder/200/300" }
-      ],
-
-      finalScreens: [
-        { 
-          name: "Trust-First Home",
-          image: "/api/placeholder/300/500",
-          features: ["Verification badges", "Safety messaging", "Clear pricing"]
-        },
-        { 
-          name: "Driver Profiles",
-          image: "/api/placeholder/300/500",
-          features: ["Pet experience", "Photo gallery", "Trust signals"]
-        },
-        { 
-          name: "Live Tracking",
-          image: "/api/placeholder/300/500",
-          features: ["Real-time map", "Photo updates", "Direct messaging"]
-        }
-      ],
-
-      colorPalette: [
-        { name: "Primary", color: "#FF6B35" },
-        { name: "Trust", color: "#4ECDC4" },
-        { name: "Safety", color: "#45B7D1" },
-        { name: "Neutral", color: "#2C3E50" }
       ]
     },
 
-    {
-      id: 2,
-      title: "WedCraft",
-      subtitle: "AI-Powered Wedding Design",
-      category: "Web Platform • AI",
-      overview: "Simplifying complex creative decisions",
-      role: "Senior Product Designer", 
-      timeline: "24 weeks",
-      heroImage: "/api/placeholder/800/500",
-
-      brief: {
-        problem: "Couples face decision paralysis with thousands of design choices",
-        solution: "AI-guided design platform with collaborative tools",
-        challenge: "How might we use AI to guide creativity without replacing it?"
-      },
-
-      research: {
-        visual: "/api/placeholder/800/400",
-        methods: [
-          { icon: "💑", method: "Couple Interviews", count: "24 couples" },
-          { icon: "⏱️", method: "Process Mapping", count: "8 observations" },
-          { icon: "🎨", method: "Designer Interviews", count: "6 professionals" },
-          { icon: "🤖", method: "AI Behavior Study", count: "3 weeks" }
-        ],
-        insights: [
-          "Decision fatigue peaks at design phase",
-          "Partners often have conflicting preferences", 
-          "Need expert guidance without losing control"
-        ]
-      },
-
-      persona: {
-        name: "Thandi & David",
-        image: "/api/placeholder/200/200",
-        role: "Teacher & Developer",
-        age: "28 & 31",
-        painPoints: ["Overwhelmed by options", "Budget constraints", "Disagreements"],
-        goals: ["Cohesive aesthetic", "Stay in budget", "Collaborate effectively"],
-        quote: "We know what we like but don't know how to create it"
-      },
-
-      userJourney: {
-        steps: [
-          {
-            phase: "Discovery",
-            emotion: "Overwhelmed",
-            touchpoint: "Pinterest Research",
-            action: "Saves hundreds of ideas",
-            painPoint: "No clear direction",
-            visual: "/api/placeholder/300/200",
-            solution: "AI style assessment"
-          },
-          {
-            phase: "Assessment",
-            emotion: "Curious",
-            touchpoint: "Style Quiz",
-            action: "Answers preference questions",
-            painPoint: "Don't know their style",
-            visual: "/api/placeholder/300/200",
-            solution: "Visual preference mapping"
-          },
-          {
-            phase: "Collaboration",
-            emotion: "Conflicted",
-            touchpoint: "Partner Input",
-            action: "Compares preferences",
-            painPoint: "Different tastes",
-            visual: "/api/placeholder/300/200",
-            solution: "Structured compromise tools"
-          },
-          {
-            phase: "Creation",
-            emotion: "Empowered",
-            touchpoint: "Design Studio",
-            action: "Customizes templates",
-            painPoint: "Technical complexity",
-            visual: "/api/placeholder/300/200",
-            solution: "Guided customization"
-          },
-          {
-            phase: "Preview",
-            emotion: "Confident",
-            touchpoint: "Real-time Preview",
-            action: "Sees cohesive results",
-            painPoint: "Can't visualize outcome",
-            visual: "/api/placeholder/300/200",
-            solution: "Live preview system"
-          },
-          {
-            phase: "Finalization",
-            emotion: "Satisfied",
-            touchpoint: "Download & Print",
-            action: "Gets final files",
-            painPoint: "Vendor coordination",
-            visual: "/api/placeholder/300/200",
-            solution: "Vendor-ready packages"
-          }
-        ]
-      },
-
-      designProcess: [
-        {
-          phase: "AI Strategy",
-          visual: "/api/placeholder/400/300",
-          methods: ["AI Behavior", "Interaction Patterns", "Ethics"],
-          outcome: "AI personality defined"
-        },
-        {
-          phase: "Decision Architecture",
-          visual: "/api/placeholder/400/300",
-          methods: ["Choice Reduction", "Progressive Disclosure", "Flow Mapping"],
-          outcome: "Optimized decision paths"
-        },
-        {
-          phase: "Collaboration",
-          visual: "/api/placeholder/400/300",
-          methods: ["Voting Systems", "Compromise Tools", "Conflict Resolution"],
-          outcome: "Partner decision framework"
-        },
-        {
-          phase: "Visual System",
-          visual: "/api/placeholder/400/300",
-          methods: ["Template Engine", "Real-time Preview", "Brand Consistency"],
-          outcome: "Dynamic design system"
-        },
-        {
-          phase: "Validation",
-          visual: "/api/placeholder/400/300",
-          methods: ["Couple Testing", "A/B Tests", "Iteration"],
-          outcome: "Refined experience"
-        }
+    persona: {
+      name: 'Sarah - The Conscious Crypto Investor',
+      motivations: [
+        'Wants to participate in crypto innovation',
+        'Values environmental and social impact',
+        'Seeks long-term wealth building over speculation'
       ],
-
-      wireframes: [
-        { name: "Style Quiz", image: "/api/placeholder/200/300" },
-        { name: "Design Studio", image: "/api/placeholder/200/300" },
-        { name: "Collaboration", image: "/api/placeholder/200/300" },
-        { name: "Preview", image: "/api/placeholder/200/300" }
+      goals: [
+        'Invest in projects with real-world utility',
+        'Maintain mental well-being while investing',
+        'Understand the impact of her investments'
       ],
-
-      finalScreens: [
-        { 
-          name: "AI Style Assessment",
-          image: "/api/placeholder/300/500",
-          features: ["Visual preferences", "Partner sync", "Style mapping"]
-        },
-        { 
-          name: "Design Workspace",
-          image: "/api/placeholder/300/500",
-          features: ["AI recommendations", "Live preview", "Easy customization"]
-        },
-        { 
-          name: "Collaboration Hub",
-          image: "/api/placeholder/300/500",
-          features: ["Partner voting", "Compromise tools", "Shared decisions"]
-        }
-      ],
-
-      colorPalette: [
-        { name: "Primary", color: "#E91E63" },
-        { name: "Secondary", color: "#9C27B0" },
-        { name: "Accent", color: "#673AB7" },
-        { name: "Neutral", color: "#37474F" }
+      frustrations: [
+        'Overwhelmed by speculation-focused platforms',
+        'Difficulty finding vetted, ethical crypto projects',
+        'Anxiety from volatile day trading culture'
       ]
     },
 
-    {
-      id: 3,
-      title: "Ubuntu Learn",
-      subtitle: "Cultural Language Learning",
-      category: "Mobile App • Education",
-      overview: "Respectful cultural language preservation",
-      role: "Product Designer & Cultural Consultant",
-      timeline: "32 weeks",
-      heroImage: "/api/placeholder/800/500",
-
-      brief: {
-        problem: "African languages lack culturally respectful digital learning platforms",
-        solution: "Community-centered platform teaching through stories and music",
-        challenge: "How might we honor tradition while embracing technology?"
+    design: {
+      typography: {
+        choice: 'Inter for headings, Source Sans Pro for body',
+        reasoning: 'Clean, trustworthy fonts that convey professionalism and accessibility in financial contexts'
       },
-
-      research: {
-        visual: "/api/placeholder/800/400",
-        methods: [
-          { icon: "🏛️", method: "Cultural Immersion", count: "5 communities" },
-          { icon: "👴", method: "Elder Interviews", count: "30 speakers" },
-          { icon: "📚", method: "Traditional Methods", count: "12 teachers" },
-          { icon: "📱", method: "App Analysis", count: "8 platforms" }
-        ],
-        insights: [
-          "Stories are central to language learning",
-          "Community connection essential",
-          "Respect must be designed into every interaction"
-        ]
+      colorPalette: {
+        primary: '#22C55E (Green)',
+        secondary: '#3B82F6 (Blue)',
+        accent: '#F59E0B (Amber)',
+        reasoning: 'Green represents growth and sustainability, blue conveys trust and stability, amber adds warmth for human-centered approach'
       },
-
-      persona: {
-        name: "Michael Chen",
-        image: "/api/placeholder/200/200",
-        role: "Marketing Coordinator",
-        age: 26,
-        painPoints: ["Feels culturally disconnected", "Generic apps feel clinical", "Pronunciation struggles"],
-        goals: ["Learn authentic Xhosa", "Understand culture", "Connect with community"],
-        quote: "I want to learn the language properly, with respect for the culture"
-      },
-
-      userJourney: {
-        steps: [
-          {
-            phase: "Cultural Welcome",
-            emotion: "Respectful",
-            touchpoint: "Traditional Greeting",
-            action: "Receives cultural welcome",
-            painPoint: "Feels like outsider",
-            visual: "/api/placeholder/300/200",
-            solution: "Elder-led welcome ceremony"
-          },
-          {
-            phase: "Community Introduction",
-            emotion: "Welcomed",
-            touchpoint: "Learning Circle",
-            action: "Joins beginner group",
-            painPoint: "Learning alone",
-            visual: "/api/placeholder/300/200",
-            solution: "Peer learning circles"
-          },
-          {
-            phase: "Story Learning",
-            emotion: "Engaged",
-            touchpoint: "Traditional Tale",
-            action: "Learns through story",
-            painPoint: "Boring vocabulary lists",
-            visual: "/api/placeholder/300/200",
-            solution: "Interactive storytelling"
-          },
-          {
-            phase: "Pronunciation Practice",
-            emotion: "Challenged",
-            touchpoint: "Speaking Exercise",
-            action: "Practices with AI feedback",
-            painPoint: "No pronunciation help",
-            visual: "/api/placeholder/300/200",
-            solution: "Culturally-aware speech recognition"
-          },
-          {
-            phase: "Cultural Context",
-            emotion: "Enlightened",
-            touchpoint: "Context Module",
-            action: "Learns cultural significance",
-            painPoint: "Missing cultural meaning",
-            visual: "/api/placeholder/300/200",
-            solution: "Embedded cultural lessons"
-          },
-          {
-            phase: "Community Validation",
-            emotion: "Proud",
-            touchpoint: "Elder Approval",
-            action: "Receives cultural validation",
-            painPoint: "No cultural feedback",
-            visual: "/api/placeholder/300/200",
-            solution: "Community elder reviews"
-          }
-        ]
-      },
-
-      designProcess: [
-        {
-          phase: "Cultural Research",
-          visual: "/api/placeholder/400/300",
-          methods: ["Immersion", "Elder Consultation", "Protocol Study"],
-          outcome: "Cultural framework"
-        },
-        {
-          phase: "Community Co-Design",
-          visual: "/api/placeholder/400/300",
-          methods: ["Workshops", "Validation", "Iteration"],
-          outcome: "Community-approved concepts"
-        },
-        {
-          phase: "Respectful Design",
-          visual: "/api/placeholder/400/300",
-          methods: ["Cultural Icons", "Color Meaning", "Visual Language"],
-          outcome: "Culturally appropriate system"
-        },
-        {
-          phase: "Story Integration",
-          visual: "/api/placeholder/400/300",
-          methods: ["Traditional Stories", "Interactive Design", "Audio Recording"],
-          outcome: "Narrative learning experience"
-        },
-        {
-          phase: "Community Testing",
-          visual: "/api/placeholder/400/300",
-          methods: ["Cultural Validation", "Elder Approval", "Community Feedback"],
-          outcome: "Respectful final product"
-        }
-      ],
-
-      wireframes: [
-        { name: "Cultural Welcome", image: "/api/placeholder/200/300" },
-        { name: "Story Learning", image: "/api/placeholder/200/300" },
-        { name: "Community Hub", image: "/api/placeholder/200/300" },
-        { name: "Progress", image: "/api/placeholder/200/300" }
-      ],
-
-      finalScreens: [
-        { 
-          name: "Traditional Welcome",
-          image: "/api/placeholder/300/500",
-          features: ["Elder greeting", "Cultural imagery", "Respectful onboarding"]
-        },
-        { 
-          name: "Story Mode",
-          image: "/api/placeholder/300/500",
-          features: ["Animated stories", "Interactive elements", "Cultural context"]
-        },
-        { 
-          name: "Community Circle",
-          image: "/api/placeholder/300/500",
-          features: ["Peer learning", "Elder guidance", "Cultural validation"]
-        }
-      ],
-
-      colorPalette: [
-        { name: "Earth", color: "#8D6E63" },
-        { name: "Sky", color: "#2196F3" },
-        { name: "Growth", color: "#4CAF50" },
-        { name: "Warmth", color: "#FF9800" }
+      components: [
+        'Mindful investment cards with impact metrics',
+        'Cooling-off period modals for impulsive decisions',
+        'Project transparency dashboards',
+        'Educational tooltips and guided experiences'
       ]
-    }
-  ];
+    },
 
-  // Auto-advance journey steps
-  useEffect(() => {
-    if (selectedProject && activeSection === 'journey' && isAutoPlay) {
-      const timer = setInterval(() => {
-        setJourneyStep((prev) => (prev + 1) % selectedProject.userJourney.steps.length);
-      }, 4000);
-      return () => clearInterval(timer);
-    }
-  }, [selectedProject, activeSection, isAutoPlay]);
+    reflection: {
+      wentWell: [
+        'Successfully designed behavioral patterns that prioritize mental health',
+        'Created comprehensive research framework for ethical crypto UX',
+        'Developed unique approach to combining blockchain innovation with ESG principles'
+      ],
+      wouldDoDifferently: [
+        'Would have conducted more user interviews with active crypto traders',
+        'Could have explored partnerships with existing ESG platforms earlier',
+        'Should have prototyped the cooling-off period mechanics more extensively'
+      ],
+      learned: [
+        'Advanced Figma prototyping for behavioral interventions',
+        'Research methods for sensitive topics like mental health and finances',
+        'Design systems thinking for complex financial products'
+      ]
+    },
 
-  const sectionNavigation = [
-    { id: 'overview', label: 'Brief', icon: Eye },
-    { id: 'research', label: 'Research', icon: Search },
-    { id: 'persona', label: 'Persona', icon: User },
-    { id: 'journey', label: 'User Journey', icon: Target },
-    { id: 'process', label: 'Process', icon: Layers },
-    { id: 'visual', label: 'Visual Design', icon: Palette }
-  ];
+    gallery: [
+      'https://i.ibb.co/bMrKXk6x/Screenshot-2025-06-18-171837.png',
+      'https://i.ibb.co/8gSX9T2R/screenmockup-2.png',
+      'https://i.ibb.co/ghd8CGN/mock-up-3.png',
+      'https://i.ibb.co/Mx7MdDQ0/mock-up-1.png'
+    ]
+  },
+  {
+    id: 'lume',
+    name: 'Lume',
+    type: 'Luxury / AR / E-commerce',
+    tools: ['Figma', 'Canva', 'ChatGPT'],
+    role: 'UX/UI Designer',
+    brief: 'A solo design concept exploring how luxury brands can translate exclusivity and personalization to digital retail through AR try-on experiences.',
+    heroImage: 'https://i.ibb.co/Wp7RvNbb/Chat-GPT-Image-Jun-17-2025-07-05-37-PM.png',
+    projectUrl: 'https://www.figma.com/design/your-lume-project',
+    
+    problem: {
+      description: 'Luxury eyewear loses its tactile, tailored experience in traditional online shopping. Shoppers hesitate to buy without physically trying frames or understanding what makes them premium.',
+      businessGoal: 'Create an e-commerce experience that replicates the luxury in-store experience digitally while maintaining exclusivity.',
+      context: 'Self-directed exploration to reimagine digital luxury retail and understand AR integration in premium commerce.'
+    },
 
+    goals: [
+      'Design an end-to-end luxury shopping experience with AR integration',
+      'Create visual storytelling that communicates craftsmanship and exclusivity',
+      'Develop personalization tools that feel bespoke and premium',
+      'Build a scalable design system for luxury e-commerce'
+    ],
+
+    research: {
+      competitiveAnalysis: [
+        {
+          competitor: 'Gentle Monster',
+          strengths: 'Strong brand storytelling, premium feel',
+          weaknesses: 'Limited AR features, complex navigation',
+          gaps: 'No personalization or custom frame options'
+        },
+        {
+          competitor: 'Warby Parker',
+          strengths: 'Excellent AR try-on, user-friendly',
+          weaknesses: 'More accessible than luxury positioning',
+          gaps: 'Lacks premium exclusivity and craftsmanship narrative'
+        },
+        {
+          competitor: 'Gucci Eyewear',
+          strengths: 'Luxury brand recognition, high-quality imagery',
+          weaknesses: 'No AR features, traditional e-commerce UX',
+          gaps: 'Missing digital innovation and personalization'
+        }
+      ]
+    },
+
+    persona: {
+      name: 'Marcus - The Luxury Enthusiast',
+      motivations: [
+        'Values premium quality and craftsmanship',
+        'Appreciates exclusive, personalized experiences',
+        'Early adopter of luxury tech innovations'
+      ],
+      goals: [
+        'Find eyewear that reflects his personal style and status',
+        'Understand the quality and craftsmanship behind products',
+        'Have a seamless, premium shopping experience'
+      ],
+      frustrations: [
+        'Generic online shopping experiences for luxury goods',
+        'Inability to assess quality and fit online',
+        'Lack of personalization in digital luxury retail'
+      ]
+    },
+
+    design: {
+      typography: {
+        choice: 'Playfair Display for headings, Nunito Sans for body',
+        reasoning: 'Playfair conveys luxury and elegance with serif sophistication, while Nunito Sans provides clean readability for product details'
+      },
+      colorPalette: {
+        primary: '#1A1A1A (Rich Black)',
+        secondary: '#F5F5DC (Cream)',
+        accent: '#D4AF37 (Gold)',
+        reasoning: 'Black and cream create sophisticated contrast reminiscent of premium packaging, gold accents add luxury touch without being overwhelming'
+      },
+      components: [
+        'Cinematic product viewers with 360° rotation',
+        'AR try-on interface with face mapping',
+        'Custom frame builder with live preview',
+        'Premium checkout flow with white-glove service options'
+      ]
+    },
+
+    reflection: {
+      wentWell: [
+        'Successfully created a cohesive luxury brand experience across all touchpoints',
+        'Designed intuitive AR integration that feels seamless and premium',
+        'Developed strong visual hierarchy that guides users through complex customization'
+      ],
+      wouldDoDifferently: [
+        'Would have conducted more research on luxury shopping behaviors',
+        'Could have explored more innovative AR features beyond basic try-on',
+        'Should have designed more comprehensive onboarding for AR features'
+      ],
+      learned: [
+        'Advanced prototyping for AR interactions in Figma',
+        'Luxury design principles and how they translate to digital',
+        'Component-based design systems for complex e-commerce flows'
+      ]
+    },
+
+    gallery: [
+      'https://i.ibb.co/BSJyb1X/Desktop-1-2.png',
+      'https://i.ibb.co/FbFwGR9m/COLOR-5.png',
+      'https://i.ibb.co/DHyskq4B/lUME.png',
+      'https://i.ibb.co/6RwWnxCJ/COLOR-1.png'
+    ]
+  }
+];
+
+// Navigation Component
+const ProjectNavigation = ({ sections, activeSection, onSectionChange }) => {
   return (
-    <div className="portfolio-container-page">
-      {/* Navigation - Fixed with correct class names */}
-      <nav className="navbar">
-        <div className="nav-brand">
-          <span className="brand-name">Naum Modiba</span>
-        </div>
-        <div className="nav-links">
-          <a href="/about" className="nav-link">About</a>
-          <a href="/portfolio" className="nav-link active">Portfolio</a>
-          <a href="/contact" className="nav-link">Contact</a>
-        </div>
-      </nav>
+    <nav className="sticky top-8 bg-gray-900/95 backdrop-blur-sm rounded-xl border border-gray-800 p-4 mb-8">
+      <div className="flex flex-wrap gap-2">
+        {sections.map((section) => (
+          <button
+            key={section.id}
+            onClick={() => onSectionChange(section.id)}
+            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+              activeSection === section.id
+                ? 'bg-white text-black'
+                : 'text-gray-300 hover:text-white hover:bg-gray-800'
+            }`}
+          >
+            {section.title}
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
+};
 
-      {/* Hero */}
-      <section className="hero-section">
-        <div className="container">
-          <h1 className="hero-title">UX Portfolio</h1>
-          <p className="hero-subtitle">
-            Strategic design • User research • Visual storytelling
-          </p>
-        </div>
-      </section>
-
-      {/* Project Grid */}
-      <section className="projects-section">
-        <div className="container">
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <div
-                key={project.id}
-                className="project-card"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="project-image-container">
-                  <img src={project.heroImage} alt={project.title} className="project-image" />
-                </div>
-                <div className="project-info">
-                  <div className="project-category">{project.category}</div>
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-overview">{project.overview}</p>
-                  <div className="project-cta">
-                    View Case Study <ChevronRight className="icon-sm" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Project Modal */}
-      {selectedProject && (
-        <div className="modal-overlay">
-          <div className="modal-container">
-            {/* Header */}
-            <div className="modal-header">
-              <div className="modal-header-content">
-                <h2 className="modal-title">{selectedProject.title}</h2>
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="close-button"
-                >
-                  ✕
-                </button>
-              </div>
-              
-              {/* Section Nav */}
-              <div className="section-nav">
-                <div className="section-nav-container">
-                  {sectionNavigation.map((section) => (
-                    <button
-                      key={section.id}
-                      onClick={() => setActiveSection(section.id)}
-                      className={`section-nav-btn ${activeSection === section.id ? 'active' : ''}`}
-                    >
-                      <section.icon className="icon-sm" />
-                      {section.label}
-                    </button>
-                  ))}
-                </div>
+// Image Gallery Component
+const ImageGallery = ({ images, projectName }) => {
+  return (
+    <div className="mb-12">
+      <div className="mb-6">
+        <h3 className="text-2xl font-bold text-white">Visual Design</h3>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {images.map((image, index) => (
+          <motion.div
+            key={index}
+            className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-gray-900"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, ...DESIGN_TOKENS.animations.normal }}
+          >
+            <img 
+              src={image}
+              alt={`${projectName} design ${index + 1}`}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="bg-black/50 backdrop-blur-sm rounded-lg p-2">
+                <Eye className="w-4 h-4 text-white" />
               </div>
             </div>
-
-            <div className="modal-content">
-              {/* Overview */}
-              {activeSection === 'overview' && (
-                <div className="section">
-                  <div className="text-center">
-                    <h1 className="section-title">{selectedProject.title}</h1>
-                    <p className="section-subtitle">{selectedProject.subtitle}</p>
-                    <img src={selectedProject.heroImage} alt={selectedProject.title} className="hero-image" />
-                  </div>
-
-                  <div className="grid-3">
-                    <div>
-                      <h4 className="detail-label">Role</h4>
-                      <p className="detail-value">{selectedProject.role}</p>
-                    </div>
-                    <div>
-                      <h4 className="detail-label">Timeline</h4>
-                      <p className="detail-value">{selectedProject.timeline}</p>
-                    </div>
-                    <div>
-                      <h4 className="detail-label">Category</h4>
-                      <p className="detail-value">{selectedProject.category}</p>
-                    </div>
-                  </div>
-
-                  <div className="grid-3">
-                    <div className="brief-card problem">
-                      <h3 className="brief-title problem">Problem</h3>
-                      <p>{selectedProject.brief.problem}</p>
-                    </div>
-                    <div className="brief-card challenge">
-                      <h3 className="brief-title challenge">Challenge</h3>
-                      <p>{selectedProject.brief.challenge}</p>
-                    </div>
-                    <div className="brief-card solution">
-                      <h3 className="brief-title solution">Solution</h3>
-                      <p>{selectedProject.brief.solution}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Research */}
-              {activeSection === 'research' && (
-                <div className="section">
-                  <div className="text-center">
-                    <h2 className="section-title">Research Methods</h2>
-                    <img src={selectedProject.research.visual} alt="Research process" className="hero-image" />
-                  </div>
-
-                  <div className="research-methods">
-                    {selectedProject.research.methods.map((method, index) => (
-                      <div key={index} className="research-method">
-                        <div className="method-icon">{method.icon}</div>
-                        <h4 className="method-title">{method.method}</h4>
-                        <p className="method-count">{method.count}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="visual-section">
-                    <h3 className="visual-section-title">Key Insights</h3>
-                    <div className="insights-grid">
-                      {selectedProject.research.insights.map((insight, index) => (
-                        <div key={index} className="insight-item">
-                          <div className="insight-number">{index + 1}</div>
-                          <p>{insight}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Persona */}
-              {activeSection === 'persona' && (
-                <div className="section">
-                  <div className="text-center">
-                    <h2 className="section-title">User Persona</h2>
-                  </div>
-
-                  <div className="persona-container">
-                    <div className="persona-grid">
-                      <div className="persona-image-section">
-                        <img src={selectedProject.persona.image} alt={selectedProject.persona.name} className="persona-image" />
-                        <h3 className="persona-name">{selectedProject.persona.name}</h3>
-                        <p className="persona-details">{selectedProject.persona.role}</p>
-                        <p className="persona-details">Age {selectedProject.persona.age}</p>
-                      </div>
-                      
-                      <div className="persona-content">
-                        <div className="pain-points">
-                          <h4 className="persona-section-title">Pain Points</h4>
-                          <ul className="persona-list">
-                            {selectedProject.persona.painPoints.map((pain, index) => (
-                              <li key={index} className="persona-list-item">
-                                <div className="list-bullet pain-bullet"></div>
-                                <span>{pain}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        <div className="goals">
-                          <h4 className="persona-section-title">Goals</h4>
-                          <ul className="persona-list">
-                            {selectedProject.persona.goals.map((goal, index) => (
-                              <li key={index} className="persona-list-item">
-                                <div className="list-bullet goal-bullet"></div>
-                                <span>{goal}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="persona-quote">
-                      "{selectedProject.persona.quote}"
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* User Journey */}
-              {activeSection === 'journey' && (
-                <div className="section">
-                  <div className="journey-controls">
-                    <h2 className="journey-title">User Journey</h2>
-                    <button
-                      onClick={() => setIsAutoPlay(!isAutoPlay)}
-                      className="play-button"
-                    >
-                      {isAutoPlay ? <Pause className="icon-sm" /> : <Play className="icon-sm" />}
-                      {isAutoPlay ? 'Pause' : 'Play'}
-                    </button>
-                  </div>
-
-                  {/* Journey Navigation */}
-                  <div className="journey-nav">
-                    {selectedProject.userJourney.steps.map((step, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setJourneyStep(index)}
-                        className={`journey-nav-btn ${journeyStep === index ? 'active' : ''}`}
-                      >
-                        {step.phase}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Active Journey Step */}
-                  <div className="journey-step">
-                    <div className="journey-step-grid">
-                      <div>
-                        <div className="journey-step-header">
-                          <div className="step-number">{journeyStep + 1}</div>
-                          <div>
-                            <h3 className="step-phase">{selectedProject.userJourney.steps[journeyStep].phase}</h3>
-                            <p className="step-emotion">Emotion: {selectedProject.userJourney.steps[journeyStep].emotion}</p>
-                          </div>
-                        </div>
-
-                        <div className="journey-step-content">
-                          <div className="step-detail">
-                            <h4 className="step-detail-title touchpoint-title">Touchpoint</h4>
-                            <p className="step-detail-content">{selectedProject.userJourney.steps[journeyStep].touchpoint}</p>
-                          </div>
-
-                          <div className="step-detail">
-                            <h4 className="step-detail-title action-title">User Action</h4>
-                            <p className="step-detail-content">{selectedProject.userJourney.steps[journeyStep].action}</p>
-                          </div>
-
-                          <div className="step-detail">
-                            <h4 className="step-detail-title pain-title">Pain Point</h4>
-                            <p className="step-detail-content">{selectedProject.userJourney.steps[journeyStep].painPoint}</p>
-                          </div>
-
-                          <div className="step-detail">
-                            <h4 className="step-detail-title solution-title">Design Solution</h4>
-                            <p className="step-detail-content">{selectedProject.userJourney.steps[journeyStep].solution}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div>
-                        <img 
-                          src={selectedProject.userJourney.steps[journeyStep].visual} 
-                          alt={`${selectedProject.userJourney.steps[journeyStep].phase} visualization`}
-                          className="journey-step-visual"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Journey Progress */}
-                  <div className="journey-controls-bottom">
-                    <button
-                      onClick={() => setJourneyStep(Math.max(0, journeyStep - 1))}
-                      disabled={journeyStep === 0}
-                      className="journey-control-btn"
-                    >
-                      <ArrowLeft className="icon-sm" /> Previous
-                    </button>
-                    <button
-                      onClick={() => setJourneyStep(Math.min(selectedProject.userJourney.steps.length - 1, journeyStep + 1))}
-                      disabled={journeyStep === selectedProject.userJourney.steps.length - 1}
-                      className="journey-control-btn"
-                    >
-                      Next <ArrowRight className="icon-sm" />
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Design Process */}
-              {activeSection === 'process' && (
-                <div className="section">
-                  <div className="text-center">
-                    <h2 className="section-title">Design Process</h2>
-                  </div>
-
-                  <div className="process-grid">
-                    {selectedProject.designProcess.map((phase, index) => (
-                      <div key={index} className="process-phase">
-                        <img src={phase.visual} alt={phase.phase} className="process-visual" />
-                        <h3 className="process-title">{phase.phase}</h3>
-                        <div className="process-methods">{phase.methods.join(' • ')}</div>
-                        <div className="process-outcome">{phase.outcome}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Visual Design */}
-              {activeSection === 'visual' && (
-                <div className="section">
-                  <div className="text-center">
-                    <h2 className="section-title">Visual Design</h2>
-                  </div>
-
-                  {/* Color Palette */}
-                  <div className="visual-section">
-                    <h3 className="visual-section-title">Color Palette</h3>
-                    <div className="color-palette-grid">
-                      {selectedProject.colorPalette.map((color, index) => (
-                        <div key={index} className="color-swatch">
-                          <div 
-                            className="color-circle" 
-                            style={{ backgroundColor: color.color }}
-                          ></div>
-                          <h4 className="color-name">{color.name}</h4>
-                          <p className="color-value">{color.color}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Wireframes */}
-                  <div className="visual-section">
-                    <h3 className="visual-section-title">Low-Fi Wireframes</h3>
-                    <div className="wireframe-grid">
-                      {selectedProject.wireframes.map((wireframe, index) => (
-                        <div key={index} className="wireframe-item">
-                          <img src={wireframe.image} alt={wireframe.name} className="wireframe-image" />
-                          <h4 className="wireframe-name">{wireframe.name}</h4>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Final Screens */}
-                  <div className="visual-section">
-                    <h3 className="visual-section-title">Final Screens</h3>
-                    <div className="final-screens-grid">
-                      {selectedProject.finalScreens.map((screen, index) => (
-                        <div key={index} className="final-screen">
-                          <img src={screen.image} alt={screen.name} className="final-screen-image" />
-                          <h4 className="final-screen-title">{screen.name}</h4>
-                          <div className="screen-features">
-                            {screen.features.map((feature, idx) => (
-                              <div key={idx} className="feature-item">
-                                <div className="feature-bullet"></div>
-                                <span className="feature-text">{feature}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default PortfolioPage;
+// Enhanced Project Card Component
+const ProjectCard = ({ project, isActive, onClick }) => {
+  return (
+    <motion.div
+      className={`group relative bg-gray-900 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ${
+        isActive ? 'ring-2 ring-white shadow-2xl' : 'hover:shadow-xl'
+      }`}
+      onClick={onClick}
+      whileHover={{ y: -8 }}
+      layout
+    >
+      <div className="aspect-[16/10] relative overflow-hidden">
+        <img 
+          src={project.heroImage}
+          alt={project.name}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <div className="bg-black/60 backdrop-blur-md rounded-xl p-4 border border-white/10">
+            <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
+            <p className="text-gray-300 text-sm mb-4">{project.type}</p>
+            
+            <div className="flex gap-2 flex-wrap mb-4">
+              {project.tools.slice(0, 3).map((tool, index) => (
+                <span key={index} className="bg-white/20 text-white text-xs px-2 py-1 rounded-full">
+                  {tool}
+                </span>
+              ))}
+            </div>
+            
+            <div className="flex gap-2">
+              <motion.button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClick();
+                }}
+                className="flex-1 bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Explore Design Process
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
+              
+              <motion.a
+                href={project.projectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center justify-center bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-colors"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <ExternalLink className="w-4 h-4" />
+              </motion.a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Enhanced Persona Component
+const PersonaBlock = ({ persona }) => {
+  return (
+    <div className="bg-gray-900/50 rounded-2xl p-8 border border-gray-800">
+      <div className="text-center mb-8">
+        <h4 className="text-3xl font-bold text-white mb-2">{persona.name}</h4>
+        <p className="text-gray-400">Primary user archetype identified through research</p>
+      </div>
+      
+      <div className="grid md:grid-cols-3 gap-8">
+        <div className="text-center">
+          <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Target className="w-6 h-6 text-emerald-400" />
+          </div>
+          <h5 className="font-semibold text-emerald-400 mb-4">What drives them</h5>
+          <div className="space-y-3">
+            {persona.motivations.map((motivation, index) => (
+              <p key={index} className="text-gray-300 text-sm leading-relaxed">
+                {motivation}
+              </p>
+            ))}
+          </div>
+        </div>
+        
+        <div className="text-center">
+          <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Target className="w-6 h-6 text-blue-400" />
+          </div>
+          <h5 className="font-semibold text-blue-400 mb-4">What they want to achieve</h5>
+          <div className="space-y-3">
+            {persona.goals.map((goal, index) => (
+              <p key={index} className="text-gray-300 text-sm leading-relaxed">
+                {goal}
+              </p>
+            ))}
+          </div>
+        </div>
+        
+        <div className="text-center">
+          <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <X className="w-6 h-6 text-red-400" />
+          </div>
+          <h5 className="font-semibold text-red-400 mb-4">Pain points</h5>
+          <div className="space-y-3">
+            {persona.frustrations.map((frustration, index) => (
+              <p key={index} className="text-gray-300 text-sm leading-relaxed">
+                {frustration}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Main Project Details Component
+const ProjectDetails = ({ project }) => {
+  const [activeSection, setActiveSection] = useState('overview');
+  
+  const sections = [
+    {
+      id: 'overview',
+      title: 'Overview',
+      content: (
+        <div className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div className="bg-gray-900/50 rounded-xl p-6">
+                <span className="text-gray-400 text-sm uppercase tracking-wide">Project Type</span>
+                <div className="text-white font-semibold text-lg mt-1">{project.type}</div>
+              </div>
+              <div className="bg-gray-900/50 rounded-xl p-6">
+                <span className="text-gray-400 text-sm uppercase tracking-wide">My Role</span>
+                <div className="text-white font-semibold text-lg mt-1">{project.role}</div>
+              </div>
+              <div className="bg-gray-900/50 rounded-xl p-6">
+                <span className="text-gray-400 text-sm uppercase tracking-wide">Tools Used</span>
+                <div className="flex gap-2 flex-wrap mt-2">
+                  {project.tools.map((tool, index) => (
+                    <span key={index} className="bg-blue-500/20 text-blue-300 text-sm px-3 py-1 rounded-full">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="bg-gray-900/50 rounded-xl p-6">
+              <span className="text-gray-400 text-sm uppercase tracking-wide">Project Brief</span>
+              <p className="text-gray-300 leading-relaxed mt-2">{project.brief}</p>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'problem',
+      title: 'Problem',
+      content: (
+        <div className="space-y-8">
+          <div className="bg-gray-900/50 rounded-xl p-8">
+            <h4 className="text-2xl font-bold mb-4 text-white">The Challenge</h4>
+            <p className="text-gray-300 text-lg leading-relaxed mb-8">{project.problem.description}</p>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                <h5 className="font-semibold text-blue-400 mb-3">Business Goal</h5>
+                <p className="text-gray-300">{project.problem.businessGoal}</p>
+              </div>
+              <div className="p-6 bg-purple-500/10 rounded-xl border border-purple-500/20">
+                <h5 className="font-semibold text-purple-400 mb-3">Context</h5>
+                <p className="text-gray-300">{project.problem.context}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'goals',
+      title: 'Goals',
+      content: (
+        <div className="space-y-8">
+          <div className="text-center mb-8">
+            <h4 className="text-2xl font-bold text-white mb-4">Project Objectives</h4>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Clear, measurable goals that guided the design process and evaluation criteria
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {project.goals.map((goal, index) => (
+              <motion.div 
+                key={index} 
+                className="p-6 bg-gray-900/50 rounded-xl border border-gray-800 hover:border-blue-500/50 transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-blue-400 font-semibold text-sm">{index + 1}</span>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed">{goal}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'research',
+      title: 'Research',
+      content: (
+        <div className="space-y-8">
+          <div className="text-center mb-8">
+            <h4 className="text-2xl font-bold text-white mb-4">Competitive Analysis</h4>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Understanding the competitive landscape to identify opportunities and gaps
+            </p>
+          </div>
+          
+          <div className="grid gap-6">
+            {project.research.competitiveAnalysis.map((comp, index) => (
+              <motion.div 
+                key={index} 
+                className="bg-gray-900/50 rounded-xl p-6 border border-gray-800"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <h5 className="text-xl font-semibold text-white mb-4">{comp.competitor}</h5>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="p-4 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                    <span className="text-emerald-400 font-medium text-sm">Strengths</span>
+                    <p className="text-gray-300 text-sm mt-2">{comp.strengths}</p>
+                  </div>
+                  <div className="p-4 bg-red-500/10 rounded-lg border border-red-500/20">
+                    <span className="text-red-400 font-medium text-sm">Weaknesses</span>
+                    <p className="text-gray-300 text-sm mt-2">{comp.weaknesses}</p>
+                  </div>
+                  <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                    <span className="text-blue-400 font-medium text-sm">Opportunities</span>
+                    <p className="text-gray-300 text-sm mt-2">{comp.gaps}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'persona',
+      title: 'Persona',
+      content: <PersonaBlock persona={project.persona} />
+    },
+    {
+      id: 'design',
+      title: 'Design',
+      content: (
+        <div className="space-y-8">
+          <div className="text-center mb-8">
+            <h4 className="text-2xl font-bold text-white mb-4">Design System</h4>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Foundational design decisions that shaped the visual language and user experience
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-gray-900/50 rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                  <Globe className="w-4 h-4 text-purple-400" />
+                </div>
+                <h5 className="font-semibold text-white">Typography</h5>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <span className="text-gray-400 text-sm">Choice:</span>
+                  <p className="text-gray-300 mt-1">{project.design.typography.choice}</p>
+                </div>
+                <div>
+                  <span className="text-gray-400 text-sm">Reasoning:</span>
+                  <p className="text-gray-300 text-sm mt-1">{project.design.typography.reasoning}</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-gray-900/50 rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+                  <Palette className="w-4 h-4 text-emerald-400" />
+                </div>
+                <h5 className="font-semibold text-white">Color Palette</h5>
+              </div>
+              <div className="space-y-3">
+                <div>
+                  <span className="text-gray-400 text-sm">Colors:</span>
+                  <div className="mt-2 space-y-1">
+                    <div className="text-sm text-gray-300">{project.design.colorPalette.primary}</div>
+                    <div className="text-sm text-gray-300">{project.design.colorPalette.secondary}</div>
+                    <div className="text-sm text-gray-300">{project.design.colorPalette.accent}</div>
+                  </div>
+                </div>
+                <div>
+                  <span className="text-gray-400 text-sm">Reasoning:</span>
+                  <p className="text-gray-300 text-sm mt-1">{project.design.colorPalette.reasoning}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-gray-900/50 rounded-xl p-6">
+            <h5 className="font-semibold text-white mb-4">Key Components</h5>
+            <div className="grid md:grid-cols-2 gap-4">
+              {project.design.components.map((component, index) => (
+                <div key={index} className="p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                  <p className="text-gray-300 text-sm">{component}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'reflection',
+      title: 'Reflection',
+      content: (
+        <div className="space-y-8">
+          <div className="text-center mb-8">
+            <h4 className="text-2xl font-bold text-white mb-4">Project Retrospective</h4>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Key learnings and insights gained throughout the design process
+            </p>
+          </div>
+          
+          <div className="grid gap-8">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+                  <Lightbulb className="w-4 h-4 text-emerald-400" />
+                </div>
+                <h5 className="text-xl font-semibold text-emerald-400">What went well</h5>
+              </div>
+              <div className="grid gap-4">
+                {project.reflection.wentWell.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="p-4 bg-emerald-500/5 border-l-4 border-emerald-500 rounded-r-lg"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <p className="text-gray-300 leading-relaxed">{item}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center">
+                  <Target className="w-4 h-4 text-amber-400" />
+                </div>
+                <h5 className="text-xl font-semibold text-amber-400">Areas for improvement</h5>
+              </div>
+              <div className="grid gap-4">
+                {project.reflection.wouldDoDifferently.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="p-4 bg-amber-500/5 border-l-4 border-amber-500 rounded-r-lg"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <p className="text-gray-300 leading-relaxed">{item}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                  <Users className="w-4 h-4 text-blue-400" />
+                </div>
+                <h5 className="text-xl font-semibold text-blue-400">Skills developed</h5>
+              </div>
+              <div className="grid gap-4">
+                {project.reflection.learned.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="p-4 bg-blue-500/5 border-l-4 border-blue-500 rounded-r-lg"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <p className="text-gray-300 leading-relaxed">{item}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  const renderSectionContent = () => {
+    const section = sections.find(s => s.id === activeSection);
+    return section ? section.content : null;
+  };
+
+  return (
+    <div className="space-y-8">
+      <ImageGallery images={project.gallery} projectName={project.name} />
+      
+      <ProjectNavigation 
+        sections={sections}
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+      />
+      
+      <motion.div
+        key={activeSection}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={DESIGN_TOKENS.animations.normal}
+        className="min-h-[400px]"
+      >
+        {renderSectionContent()}
+      </motion.div>
+    </div>
+  );
+};
+
+// Main Component
+const ProjectsShowcase = () => {
+  const [activeProject, setActiveProject] = useState(null);
+
+  return (
+    <section id="projects" className="py-16 sm:py-32 bg-black text-white min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div 
+          className="text-center mb-16 sm:mb-24"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2 
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            Featured Projects
+          </motion.h2>
+          <motion.p 
+            className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Deep dives into my design process, from problem identification to final solutions and learnings
+          </motion.p>
+        </motion.div>
+
+        {/* Project Selection */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          {projectsData.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <ProjectCard 
+                project={project}
+                isActive={activeProject === project.id}
+                onClick={() => setActiveProject(activeProject === project.id ? null : project.id)}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Project Details */}
+        <AnimatePresence mode="wait">
+          {activeProject && (
+            <motion.div
+              key={activeProject}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="bg-gray-950/80 backdrop-blur-sm rounded-3xl p-8 sm:p-12 border border-gray-800"
+            >
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h3 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                    {projectsData.find(p => p.id === activeProject)?.name}
+                  </h3>
+                  <p className="text-gray-400">Case Study Deep Dive</p>
+                </div>
+                <motion.button
+                  onClick={() => setActiveProject(null)}
+                  className="text-gray-400 hover:text-white transition-colors p-3 hover:bg-gray-800 rounded-xl"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.button>
+              </div>
+              
+              <ProjectDetails project={projectsData.find(p => p.id === activeProject)} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+
+      </div>
+    </section>
+  );
+};
+
+export default ProjectsShowcase;
