@@ -56,7 +56,7 @@ const projectsData = [
     role: 'Product Designer & Researcher + Frontend Developer',
     brief: 'A passion project exploring alternatives to memecoin culture through conscious investment design, focusing on ethical crypto investing and mental well-being.',
     heroImage: 'https://i.ibb.co/9kr7mnFP/Chat-GPT-Image-Jun-20-2025-04-23-52-PM.png',
-    projectUrl: 'https://www.figma.com/design/your-ecotoken-project',
+    projectUrl: 'https://crypto-esg.vercel.app/',
     
     problem: {
       description: 'Through my own trading experience and conversations with other investors, I identified concerning patterns in memecoin culture that needed addressing.',
@@ -165,7 +165,7 @@ const projectsData = [
     role: 'UX/UI Designer',
     brief: 'A solo design concept exploring how luxury brands can translate exclusivity and personalization to digital retail through AR try-on experiences.',
     heroImage: 'https://i.ibb.co/Wp7RvNbb/Chat-GPT-Image-Jun-17-2025-07-05-37-PM.png',
-    projectUrl: 'https://www.figma.com/design/your-lume-project',
+    projectUrl: 'https://www.figma.com/design/6TZjsqOmziNv3nKoV78Jyi/Lume?node-id=0-1&t=PKRGmAM1aRpWM4hn-1',
     
     problem: {
       description: 'Luxury eyewear loses its tactile, tailored experience in traditional online shopping. Shoppers hesitate to buy without physically trying frames or understanding what makes them premium.',
