@@ -157,113 +157,116 @@ const projectsData = [
       'https://i.ibb.co/Mx7MdDQ0/mock-up-1.png'
     ]
   },
-  {
-    id: 'lume',
-    name: 'Lume',
-    type: 'Luxury / AR / E-commerce',
-    tools: ['Figma', 'Canva', 'ChatGPT'],
-    role: 'UX/UI Designer',
-    brief: 'A solo design concept exploring how luxury brands can translate exclusivity and personalization to digital retail through AR try-on experiences.',
-    heroImage: 'https://i.ibb.co/Wp7RvNbb/Chat-GPT-Image-Jun-17-2025-07-05-37-PM.png',
-    projectUrl: 'https://www.figma.com/design/6TZjsqOmziNv3nKoV78Jyi/Lume?node-id=0-1&t=PKRGmAM1aRpWM4hn-1',
+ {
+    id: 'nazario',
+    name: 'Nazario Technologies',
+    type: 'Corporate Website Rebrand / B2B Tech',
+    tools: ['Figma', 'React', 'CSS'],
+    role: 'UI/UX Designer & Frontend Developer',
+    brief: 'Complete website rebrand for a Level 1 BBBEE IT solutions company, transforming their outdated WordPress site into a modern, professional platform that better represents their expertise and African market focus.',
+    heroImage: 'https://i.ibb.co/YB734R3q/Screenshot-2025-07-14-095511.png',
+    projectUrl: 'https://nazario.co.za/',
     
     problem: {
-      description: 'Luxury eyewear loses its tactile, tailored experience in traditional online shopping. Shoppers hesitate to buy without physically trying frames or understanding what makes them premium.',
-      businessGoal: 'Create an e-commerce experience that replicates the luxury in-store experience digitally while maintaining exclusivity.',
-      context: 'Self-directed exploration to reimagine digital luxury retail and understand AR integration in premium commerce.'
+      description: 'The client was deeply unsatisfied with their existing WordPress website, which featured persistent error messages, unprofessional appearance, and failed to represent their position as a leading IT solutions provider in Africa.',
+      businessGoal: 'Create a professional, modern website that establishes credibility, showcases technical expertise, and positions Nazario as a premium IT solutions provider for African businesses.',
+      context: 'Client-commissioned project to completely overhaul their digital presence and align it with their business growth ambitions.'
     },
 
     goals: [
-      'Design an end-to-end luxury shopping experience with AR integration',
-      'Create visual storytelling that communicates craftsmanship and exclusivity',
-      'Develop personalization tools that feel bespoke and premium',
-      'Build a scalable design system for luxury e-commerce'
+      'Eliminate technical issues and create a stable, error-free website',
+      'Design a professional interface that builds trust with enterprise clients',
+      'Showcase their comprehensive IT services with clear, compelling messaging',
+      'Establish visual brand identity that reflects innovation and African heritage',
+      'Improve user experience for business decision-makers seeking IT solutions'
     ],
 
     research: {
       competitiveAnalysis: [
         {
-          competitor: 'Gentle Monster',
-          strengths: 'Strong brand storytelling, premium feel',
-          weaknesses: 'Limited AR features, complex navigation',
-          gaps: 'No personalization or custom frame options'
+          competitor: 'Traditional IT Service Providers',
+          strengths: 'Established market presence, comprehensive service offerings',
+          weaknesses: 'Outdated websites, generic messaging, poor mobile experience',
+          gaps: 'Lack of modern design, no focus on African market specificity'
         },
         {
-          competitor: 'Warby Parker',
-          strengths: 'Excellent AR try-on, user-friendly',
-          weaknesses: 'More accessible than luxury positioning',
-          gaps: 'Lacks premium exclusivity and craftsmanship narrative'
+          competitor: 'Global Tech Consultancies',
+          strengths: 'Professional branding, comprehensive case studies',
+          weaknesses: 'Not locally focused, expensive positioning',
+          gaps: 'No understanding of African business challenges and opportunities'
         },
         {
-          competitor: 'Gucci Eyewear',
-          strengths: 'Luxury brand recognition, high-quality imagery',
-          weaknesses: 'No AR features, traditional e-commerce UX',
-          gaps: 'Missing digital innovation and personalization'
+          competitor: 'Local BBBEE IT Companies',
+          strengths: 'Local market knowledge, transformation credentials',
+          weaknesses: 'Often have poor digital presence, limited service visualization',
+          gaps: 'Lack of modern web design and clear service differentiation'
         }
       ]
     },
 
     persona: {
-      name: 'Marcus - The Luxury Enthusiast',
+      name: 'David - The Enterprise IT Decision Maker',
       motivations: [
-        'Values premium quality and craftsmanship',
-        'Appreciates exclusive, personalized experiences',
-        'Early adopter of luxury tech innovations'
+        'Needs reliable, scalable IT solutions for business growth',
+        'Values local expertise with global standards',
+        'Seeks partners who understand African business landscape'
       ],
       goals: [
-        'Find eyewear that reflects his personal style and status',
-        'Understand the quality and craftsmanship behind products',
-        'Have a seamless, premium shopping experience'
+        'Find trustworthy IT partners for long-term business relationships',
+        'Understand service capabilities and technical expertise clearly',
+        'Ensure compliance with local regulations and BBBEE requirements'
       ],
       frustrations: [
-        'Generic online shopping experiences for luxury goods',
-        'Inability to assess quality and fit online',
-        'Lack of personalization in digital luxury retail'
+        'Unprofessional websites that don\'t inspire confidence',
+        'Unclear service descriptions and pricing structures',
+        'Difficulty assessing technical competency from online presence'
       ]
     },
 
     design: {
       typography: {
-        choice: 'Playfair Display for headings, Nunito Sans for body',
-        reasoning: 'Playfair conveys luxury and elegance with serif sophistication, while Nunito Sans provides clean readability for product details'
+        choice: 'Inter for headings, Open Sans for body text',
+        reasoning: 'Inter provides modern, tech-forward feel for headings while maintaining excellent readability. Open Sans ensures accessibility and professional appearance across all content.'
       },
       colorPalette: {
-        primary: '#1A1A1A (Rich Black)',
-        secondary: '#F5F5DC (Cream)',
-        accent: '#D4AF37 (Gold)',
-        reasoning: 'Black and cream create sophisticated contrast reminiscent of premium packaging, gold accents add luxury touch without being overwhelming'
+        primary: '#1A1A1A (Deep Black)',
+        secondary: '#D4AF37 (Gold)',
+        accent: '#2563EB (Blue)',
+        reasoning: 'Black conveys sophistication and premium positioning, gold represents African heritage and premium service, blue adds trust and technological innovation'
       },
       components: [
-        'Cinematic product viewers with 360° rotation',
-        'AR try-on interface with face mapping',
-        'Custom frame builder with live preview',
-        'Premium checkout flow with white-glove service options'
+        'Hero sections with 3D security shield graphics',
+        'Service cards with hover interactions and detailed descriptions',
+        'Professional team imagery with statistics overlays',
+        'Contact forms with enterprise-focused CTAs'
       ]
     },
 
     reflection: {
       wentWell: [
-        'Successfully created a cohesive luxury brand experience across all touchpoints',
-        'Designed intuitive AR integration that feels seamless and premium',
-        'Developed strong visual hierarchy that guides users through complex customization'
+        'Successfully eliminated all technical errors and created stable platform',
+        'Transformed client perception from frustrated to extremely satisfied with new brand representation',
+        'Created cohesive visual identity that balances professionalism with African heritage',
+        'Improved user experience with clear service navigation and compelling messaging'
       ],
       wouldDoDifferently: [
-        'Would have conducted more research on luxury shopping behaviors',
-        'Could have explored more innovative AR features beyond basic try-on',
-        'Should have designed more comprehensive onboarding for AR features'
+        'Would have conducted more user testing with actual enterprise clients',
+        'Could have implemented more advanced animations and micro-interactions',
+        'Should have included more detailed case studies and client testimonials'
       ],
       learned: [
-        'Advanced prototyping for AR interactions in Figma',
-        'Luxury design principles and how they translate to digital',
-        'Component-based design systems for complex e-commerce flows'
+        'Corporate rebrand strategy and stakeholder management',
+        'B2B website optimization for enterprise client acquisition',
+        'Balancing cultural identity with professional corporate aesthetics',
+        'Technical problem-solving for legacy website migration challenges'
       ]
     },
 
     gallery: [
-      'https://i.ibb.co/BSJyb1X/Desktop-1-2.png',
-      'https://i.ibb.co/FbFwGR9m/COLOR-5.png',
-      'https://i.ibb.co/DHyskq4B/lUME.png',
-      'https://i.ibb.co/6RwWnxCJ/COLOR-1.png'
+      'https://i.ibb.co/nsGT9Z34/Screenshot-2025-07-14-100658.png',
+      'https://i.ibb.co/TDMBXTv4/Screenshot-2025-07-14-095551.png',
+      'https://i.ibb.co/0p9S6FfP/Screenshot-2025-07-14-095623.png',
+      'https://i.ibb.co/kgW02vY5/Screenshot-2025-07-14-094413.png'
     ]
   }
 ];
