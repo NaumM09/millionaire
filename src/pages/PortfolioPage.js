@@ -164,7 +164,7 @@ const projectsData = [
     tools: ['Figma', 'React', 'CSS'],
     role: 'UI/UX Designer & Frontend Developer',
     brief: 'Complete website rebrand for a Level 1 BBBEE IT solutions company, transforming their outdated WordPress site into a modern, professional platform that better represents their expertise and African market focus.',
-    heroImage: 'https://i.ibb.co/YB734R3q/Screenshot-2025-07-14-095511.png',
+    heroImage: 'https://i.ibb.co/Df71qZZn/Screenshot-2025-07-14-101501.png',
     projectUrl: 'https://nazario.co.za/',
     
     problem: {
@@ -263,7 +263,7 @@ const projectsData = [
     },
 
     gallery: [
-      'https://i.ibb.co/nsGT9Z34/Screenshot-2025-07-14-100658.png',
+      'https://i.ibb.co/Df71qZZn/Screenshot-2025-07-14-101501.png',
       'https://i.ibb.co/TDMBXTv4/Screenshot-2025-07-14-095551.png',
       'https://i.ibb.co/0p9S6FfP/Screenshot-2025-07-14-095623.png',
       'https://i.ibb.co/kgW02vY5/Screenshot-2025-07-14-094413.png'
