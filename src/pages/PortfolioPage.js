@@ -333,61 +333,61 @@ const ImageGallery = ({ images, projectName }) => {
 const ProjectCard = ({ project, isActive, onClick }) => {
   return (
     <motion.div
-      className={`group relative bg-gray-900 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ${
+      className={`group bg-gray-900 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 ${
         isActive ? 'ring-2 ring-white shadow-2xl' : 'hover:shadow-xl'
       }`}
       onClick={onClick}
       whileHover={{ y: -8 }}
       layout
     >
+      {/* Image Section */}
       <div className="aspect-[16/10] relative overflow-hidden">
         <img 
           src={project.heroImage}
           alt={project.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      </div>
+      
+      {/* Glassmorphic Content Section */}
+      <div className="p-6 bg-white/5 backdrop-blur-xl border-t border-white/10">
+        <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
+        <p className="text-white/70 text-sm mb-4">{project.type}</p>
         
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <div className="bg-black/60 backdrop-blur-md rounded-xl p-4 border border-white/10">
-            <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
-            <p className="text-gray-300 text-sm mb-4">{project.type}</p>
-            
-            <div className="flex gap-2 flex-wrap mb-4">
-              {project.tools.slice(0, 3).map((tool, index) => (
-                <span key={index} className="bg-white/20 text-white text-xs px-2 py-1 rounded-full">
-                  {tool}
-                </span>
-              ))}
-            </div>
-            
-            <div className="flex gap-2">
-              <motion.button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onClick();
-                }}
-                className="flex-1 bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Explore Design Process
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-              
-              <motion.a
-                href={project.projectUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="flex items-center justify-center bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-colors"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <ExternalLink className="w-4 h-4" />
-              </motion.a>
-            </div>
-          </div>
+        <div className="flex gap-2 flex-wrap mb-6">
+          {project.tools.slice(0, 3).map((tool, index) => (
+            <span key={index} className="bg-white/10 backdrop-blur-sm text-white/90 text-xs px-3 py-1 rounded-full border border-white/20">
+              {tool}
+            </span>
+          ))}
+        </div>
+        
+        <div className="flex gap-3">
+          <motion.button
+            onClick={(e) => {
+              e.stopPropagation();
+              onClick();
+            }}
+            className="flex-1 bg-white/90 backdrop-blur-sm text-black px-4 py-3 rounded-lg text-sm font-medium hover:bg-white transition-all duration-300 flex items-center justify-center gap-2 border border-white/20"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Explore Design Process
+            <ArrowRight className="w-4 h-4" />
+          </motion.button>
+          
+          <motion.a
+            href={project.projectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="flex items-center justify-center bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-4 py-3 rounded-lg transition-all duration-300 border border-white/20"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <ExternalLink className="w-4 h-4" />
+          </motion.a>
         </div>
       </div>
     </motion.div>

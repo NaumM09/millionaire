@@ -875,10 +875,7 @@
 }
 
 /* Smooth transitions for all interactive elements */
-.projects-showcase * {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}12px 12px;
-}
+
 
 /* Overview Section */
 .overview-grid {
