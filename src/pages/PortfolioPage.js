@@ -165,7 +165,7 @@ const projectsData = [
     role: 'UI/UX Designer & Frontend Developer',
     brief: 'Complete website rebrand for a Level 1 BBBEE IT solutions company, transforming their outdated WordPress site into a modern, professional platform that better represents their expertise and African market focus.',
     heroImage: 'https://i.ibb.co/Df71qZZn/Screenshot-2025-07-14-101501.png',
-    projectUrl: 'https://nazario.co.za/',
+    projectUrl: 'https://nazario-eta.vercel.app/',
     
     problem: {
       description: 'The client was deeply unsatisfied with their existing WordPress website, which featured persistent error messages, unprofessional appearance, and failed to represent their position as a leading IT solutions provider in Africa.',
@@ -266,7 +266,7 @@ const projectsData = [
       'https://i.ibb.co/Df71qZZn/Screenshot-2025-07-14-101501.png',
       'https://i.ibb.co/TDMBXTv4/Screenshot-2025-07-14-095551.png',
       'https://i.ibb.co/0p9S6FfP/Screenshot-2025-07-14-095623.png',
-      'https://i.ibb.co/kgW02vY5/Screenshot-2025-07-14-094413.png'
+      'https://i.ibb.co/hJ08C9H7/Screenshot-2025-07-15-124832.png'
     ]
   }
 ];
