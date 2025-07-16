@@ -172,18 +172,6 @@ const PremiumPortfolio = () => {
               >
                 Process
               </motion.button>
-              
-              <motion.a
-                href="/Naum_resume.pdf"
-                download="Naum_resume.pdf"
-                className="text-3xl font-bold text-left hover:text-gray-300 transition-colors"
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Resume
-              </motion.a>
             </div>
             
             <div className="p-6">
@@ -434,17 +422,6 @@ const PremiumPortfolio = () => {
                 View Tools
                 <ArrowDown className="inline-block w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </motion.button>
-              
-              <motion.a 
-                href="/Naum_resume.pdf"
-                download="Naum_resume.pdf"
-                className="border border-gray-600 hover:border-gray-400 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-white/5 transition-all inline-flex items-center justify-center"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Download Resume
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
-              </motion.a>
             </motion.div>
 
             {/* Social Proof */}
