@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
+  const [loadedImages, setLoadedImages] = useState({});
+
+  const handleImageLoad = (imageName) => {
+    setLoadedImages(prev => ({ ...prev, [imageName]: true }));
+  };
+
   return (
     <div className="home">
       {/* Hero */}
@@ -14,8 +20,8 @@ const Home = () => {
           and frontend development. Experienced in turning ideas into functional, user-friendly
           digital products. Based in South Africa.
         </p>
-        <a href="mailto:mahlatse.modiba@gmail.com" className="contact-link">
-          mahlatse.modiba@gmail.com
+        <a href="mailto:mahlatse.modiba@gmail.com" className="contact-button">
+          Get in touch
         </a>
       </section>
 
@@ -43,11 +49,15 @@ const Home = () => {
               </div>
             </div>
             <div className="project-image">
-              <img 
-                src="https://i.ibb.co/5h1zLYFk/mock1.png" 
-                alt="Zoolo marketplace app interface" 
-                className="project-screenshot"
-              />
+              <div className={`image-loader ${loadedImages.zoolo ? 'loaded' : ''}`}>
+                <img 
+                  src="https://i.ibb.co/5h1zLYFk/mock1.png" 
+                  alt="Zoolo marketplace app interface" 
+                  className="project-screenshot"
+                  loading="lazy"
+                  onLoad={() => handleImageLoad('zoolo')}
+                />
+              </div>
             </div>
           </div>
         </Link>
@@ -61,7 +71,7 @@ const Home = () => {
               </div>
               <p className="project-type">B2B E-commerce Platform</p>
               <p className="project-description">
-                Generator Components needed to compete with GenStream's modern site. 
+                Generator Components needed to compete with competitive modern site. 
                 Instead of copying competitors, we built an e-commerce-style product 
                 showcase for B2B industrial parts.
               </p>
@@ -72,11 +82,15 @@ const Home = () => {
               </div>
             </div>
             <div className="project-image">
-              <img 
-                src="https://i.ibb.co/xq4MGv3J/mock2.png" 
-                alt="Hard Hat B2B platform mockup"
-                className="project-screenshot"
-              />
+              <div className={`image-loader ${loadedImages.hardhat ? 'loaded' : ''}`}>
+                <img 
+                  src="https://i.ibb.co/xq4MGv3J/mock2.png" 
+                  alt="Hard Hat B2B platform mockup"
+                  className="project-screenshot"
+                  loading="lazy"
+                  onLoad={() => handleImageLoad('hardhat')}
+                />
+              </div>
             </div>
           </div>
         </Link>
