@@ -46,7 +46,7 @@ const ProjectDetail = () => {
         },
         {
           phase: 'Design',
-          summary: 'Created wireframes for key user flows. Designed high-fidelity mockups with e-commerce aesthetics. Developed comprehensive component library. Prototyped product browsing and discovery flows.',
+          summary: 'Created wireframes for key user flows. Designed low-fidelity mockups with e-commerce aesthetics. Developed comprehensive component library. Prototyped product browsing and discovery flows.',
           outcome: 'Large product images with hover effects enhanced engagement. Grid layouts with filters improved product discovery. Modern typography and spacing created premium feel.'
         },
         {
