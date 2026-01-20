@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://www.naummodiba.co.za/</loc>
+    <lastmod>2024-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Zoolo Project -->
+  <url>
+    <loc>https://www.naummodiba.co.za/project/zoolo</loc>
+    <lastmod>2024-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.naummodiba.co.za/images/zoolo-hero.jpg</image:loc>
+      <image:title>Zoolo - Pet Transport Marketplace</image:title>
+      <image:caption>Two-sided marketplace connecting pet owners with verified transport providers</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Hard Hat Project -->
+  <url>
+    <loc>https://www.naummodiba.co.za/project/hard-hat</loc>
+    <lastmod>2024-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.naummodiba.co.za/images/hardhat-hero.jpg</image:loc>
+      <image:title>Hard Hat - B2B E-commerce Platform</image:title>
+      <image:caption>E-commerce-style product showcase for industrial parts supplier</image:caption>
+    </image:image>
+  </url>
+  
+</urlset>
