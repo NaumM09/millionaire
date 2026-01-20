@@ -16,9 +16,15 @@ const Home = () => {
         <h1 className="name">Mahlatse Naum Modiba</h1>
         <p className="tagline">Design first. Ship fast. Fix what matters.</p>
         <p className="context">
-          Product designer and developer with over 3 years of experience across product design
-          and frontend development. Experienced in turning ideas into functional, user-friendly
-          digital products. Based in South Africa.
+        Product Designer & Full-Stack Developer with 3+ years of experience building and launching 
+digital products for startups and SMEs. 2x founder with experience in Founder Institute 
+accelerator (2023) and FSAT Labs cohort (2023). Created and hosted 'Unbeheld Fixed-Income 
+Market' podcast, reaching South Africa's Top 50 Educational Podcasts. Featured in VentureBurn 
+for co-founding FateBonds, a FinTech social savings platform. Applied to Y Combinator (2023). 
+Proven ability to design user-focused products while managing full development lifecycle from 
+concept through market launch. Strong technical foundation in React.js, React Native, TypeScript, 
+Firebase, with expertise in UI/UX design, SEO optimisation, and performance marketing. 
+Bachelor of Commerce with majors in Marketing and Insurance & Risk Management.
         </p>
         <a href="mailto:mahlatse.modiba@gmail.com" className="contact-button">
           Get in touch
